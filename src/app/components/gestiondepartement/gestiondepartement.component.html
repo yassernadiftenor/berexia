@@ -1,0 +1,86 @@
+<h3 class="first">Departments</h3>
+<nz-back-top [nzTemplate]="tpl" [nzVisibilityHeight]="100" >
+  <ng-template #tpl>
+    <div class="ant-back-top-inner">UP</div>
+  </ng-template>
+</nz-back-top>
+<button nz-button [nzType]="'primary'" (click)="showModal()"><span><i nz-icon nzType="plus" nzTheme="outline"></i>Add new departement</span></button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add new departement" [nzFooter]="addNewDepartFooter" (nzOnCancel)="handleCancel()">
+  <form nz-form [formGroup]="formular">
+    <p>Nom Departement :</p>
+    <input nz-input placeholder="Name departement" [formControlName]="'nomDepart'" nzSize="default"
+           [ngModel]="selectedDep?.nomDepart"/>
+    <p>Capacite :</p>
+    <nz-input-number [formControlName]="'capacite'"
+                     [ngModel]="selectedDep?.capacite" [nzMin]="1" [nzMax]="1000000" [nzStep]="1"></nz-input-number>
+  </form>
+
+<ng-template #addNewDepartFooter>
+  <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+  <button nz-button nzType="primary" (click)="handleOk()" [disabled]="!formular.valid">valider</button>
+</ng-template>
+  <ng-template #addNewDepartFooter1>
+    <button nz-button nzType="default" (click)="handleCancel1()">Cancel</button>
+  </ng-template>
+</nz-modal>
+<nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+  <input type="text" nz-input placeholder="Look for departement by name" (input)="search()" [(ngModel)]="searchword"/>
+</nz-input-group>
+<ng-template #suffixButton>
+</ng-template>
+<p-table [columns]="cols" [value]="departement">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{rowData[col?.field]}}
+      </td>
+      <td>
+        <button nz-button nzType="primary" (click)="update(rowData)"><i nz-icon nzType="edit" nzTheme="outline"></i>Update</button>
+
+      </td>
+      <td> <button nz-button nzType="primary"nz-button nzType="primary" nz-popconfirm
+                   nzPopconfirmTitle="Are you sure delete this task?"
+                   (nzOnConfirm)="delete(rowData.idDepart)"
+                   (nzOnCancel)="handleCancel()"
+                   nzPopconfirmPlacement="bottomLeft"
+                   nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>Delete</button></td>
+      <td>
+        <button nz-button nzType="primary" (click)="moreDetail(rowData.idDepart)"><i nz-icon nzType="unordered-list" nzTheme="outline"></i>More details</button>
+
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+<nz-modal [(nzVisible)]="displayDialog" nzTitle="details departement" [nzFooter]="addNewDepartFooter1" (nzOnCancel)="handleCancel1()">
+<p-table [columns]="cols1" [value]="employe">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+      <th>
+        idDepart
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+
+      </td >
+      <td>
+        {{rowData['departement'].idDepart}}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+</nz-modal>

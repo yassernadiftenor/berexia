@@ -1,0 +1,27 @@
+
+ <nz-layout>
+  <nz-header>
+    <div class="logo" >BEREXIA</div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+    </ul>
+  </nz-header>
+  <nz-layout>
+    <nz-sider nzWidth="200px" nzTheme="light">
+      <ul nz-menu nzMode="inline" class="sider-menu">
+        <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement" [routerLink]="['/departements']">
+
+        </li>
+        <li nz-submenu nzTitle="list employee" nzIcon="user" [routerLink]="['/employees']">
+
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <nz-breadcrumb>
+      </nz-breadcrumb>
+      <nz-content><router-outlet></router-outlet>
+      </nz-content>
+      <nz-footer>Berexia 2019/2020© copyright</nz-footer>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
