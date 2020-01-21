@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {GestionEmplyeeComponent} from './components/gestion-emplyee/gestion-emplyee.component';
 import {AccordionModule} from 'primeng/accordion';
@@ -20,11 +20,24 @@ import {departementReducer} from "src/app/state/reducers/departement.reducer"
 import {DepartementEffect} from "src/app/state/effects/departement.effects"
 import {reducers} from "./state/reducers";
 import {effects} from "./state/effects";
+import { LoginComponent } from './components/login/login.component';
+import {AppRoutingModule} from "./app-routing.module";
+
+ const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'Login' } ,
+  { path: 'employee', component : GestionEmplyeeComponent},
+  { path: 'Login', component : LoginComponent},
+  { path: 'departement', component:GestiondepartementComponent },
+  { path: 'Login', children :[
+      { path: 'departement', component:GestiondepartementComponent },
+    ]}
+]
 @NgModule({
   declarations: [
     AppComponent,
     GestionEmplyeeComponent,
-    GestiondepartementComponent
+    GestiondepartementComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,16 +50,12 @@ import {effects} from "./state/effects";
     HttpClientModule,
     NgZorroAntdModule,
     TableModule,
-
+    [RouterModule.forRoot(routes)],
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {path: 'employees', component: GestionEmplyeeComponent},
-      {path: 'departements', component: GestiondepartementComponent}
-
-    ]),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
-    StoreDevtoolsModule.instrument({ maxAge: 25 })
+    StoreDevtoolsModule.instrument({maxAge: 25}),
+
   ],
   providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [AppComponent]

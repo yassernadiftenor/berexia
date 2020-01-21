@@ -27,7 +27,7 @@ export class GestionEmplyeeComponent implements OnInit {
   searchword: string = '';
   listOfDepartement = [];
   listDepart ;
-
+  buttonInvisible:boolean=false;
   ngOnInit() {
     this.formular = this.fb.group({
       nomEmploye: ['', Validators.required],
@@ -79,8 +79,8 @@ export class GestionEmplyeeComponent implements OnInit {
       });
       this.formular.reset();
     } else {
+      this.buttonInvisible=false;
       console.log(this.formular.value);
-      console.log("dkhal lhna");
       this.selectedDep.nomEmploye = this.formular.value.nomEmploye;
       this.selectedDep.prenomEmploye = this.formular.value.prenomEmploye;
       this.selectedDep.ville = this.formular.value.ville;
