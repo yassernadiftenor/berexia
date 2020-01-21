@@ -7,19 +7,19 @@ import {HttpClient} from '@angular/common/http';
 export class UtilisateurServiceService {
 
   constructor(private http: HttpClient) { }
-  getEmploye() {
-    return this.http.get('http://localhost:4200/employees');
+  getUtilisateur() {
+    return this.http.get('http://localhost:4200/utilisateurs');
   }
-  addEmploye(employe: any) {
-    return this.http.post('http://localhost:4200/employees', employe);
+  addUtilisateur(user: any) {
+    return this.http.post('http://localhost:4200/utilisateurs/create', user);
   }
-  updateEmploye(employe: any) {
-    return this.http.put('http://localhost:4200/employees', employe);
+  updateUtilisateur(user: any) {
+    return this.http.put('http://localhost:4200/utilisateurs/update', user);
   }
-  deleteEmploye(id: any) {
-    return this.http.delete('http://localhost:4200/employees/'+id);
+  deleteUtilisateur(id: any) {
+    return this.http.delete('http://localhost:4200/utilisateurs/'+id);
   }
-  searchEmploye(nomEmpl : any){
-    return this.http.get('http://localhost:4200/employees/Search/'+nomEmpl);
+   logInUser(login:any ,pwd :any){
+    return this.http.get('http://localhost:4200/utilisateurs/login/'+login+'/'+pwd);
   }
 }

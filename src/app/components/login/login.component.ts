@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }   from '@angular/router';
 import { DatePipe } from '@angular/common';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UtilisateurServiceService} from "src/app/services/utilisateur-service.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,21 +10,55 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class LoginComponent implements OnInit {
+  formular :FormGroup;
   myDate = new Date();
+  loginn:any;
+  pwd:any;
+  bool :boolean=false;
+  selectedDep:any[];
   tokenUser:any;
-  constructor(private router:Router,private datePipe: DatePipe) {
+  constructor(private router:Router,private datePipe: DatePipe,private fb :FormBuilder,private userService:UtilisateurServiceService) {
     this.tokenUser = this.datePipe.transform(this.myDate, 'yyyyMMddhhmmss');
   }
 
   ngOnInit() {
+    this.formular = this.fb.group({
+      login: ['', Validators.required],
+      pwd : ['', Validators.required]
+    })
+
   }
-   authi :any ='/departement';
- createtoken(){
-   this.tokenUser = this.datePipe.transform(this.myDate, 'yyyyMMddhhmmss');
- }
+
+
+  authi :any ='/departement';
   authification(){
     this.router.navigate([this.authi]);
     console.log(this.tokenUser);
   }
+  login(){
+    this.loginn =this.formular.get('login').value;
+    console.log(this.loginn);
+    this.pwd=this.formular.get('pwd').value;
+    console.log(this.pwd);
+    this.userService.logInUser(this.loginn,this.pwd).subscribe((data:any) =>{
+      console.log(data);
+      this.bool=data;
+      if(data){
+        this.router.navigate(['/departement']);
+      }else{
+        this.router.navigate(['/Login']);
+      }
+    });
 
+  }
+
+
+
+
+
+
+
+  // createtoken(){
+  //   this.tokenUser = this.datePipe.transform(this.myDate, 'yyyyMMddhhmmss');
+  // }
 }

@@ -1,15 +1,15 @@
-<form nz-form [formGroup]="" class="login-form">
+<form nz-form [formGroup]="formular" class="login-form">
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your username!">
       <nz-input-group nzPrefixIcon="user">
-        <input type="text" nz-input  placeholder="Username" />
+        <input type="text" nz-input  placeholder="Username" [formControlName]="'login'" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your Password!">
       <nz-input-group nzPrefixIcon="lock">
-        <input type="password" nz-input  placeholder="Password" />
+        <input type="password" nz-input  placeholder="Password" [formControlName]="'pwd'" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -19,7 +19,7 @@
         <span>Remember me</span>
       </label>
       <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
-      <button nz-button class="login-form-button" [nzType]="'primary'" (click)="authification()" >Log in</button>
+      <button nz-button class="login-form-button" [nzType]="'primary'" (click)="login()" >Log in</button>
       Or
       <a>register now!</a>
     </nz-form-control>
