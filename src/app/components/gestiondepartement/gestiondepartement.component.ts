@@ -9,6 +9,7 @@ import {Departement} from "../../departement.module";
 import {selectAllDepartments} from "src/app/state";
 import {Actions, ofType} from "@ngrx/effects";
 import {DepartementActionType} from "src/app/state/actions/departement.actions";
+import {UtilisateurServiceService} from "src/app/services/utilisateur-service.service"
 @Component({
   selector: 'app-gestiondepartement',
   templateUrl: './gestiondepartement.component.html',
@@ -16,7 +17,7 @@ import {DepartementActionType} from "src/app/state/actions/departement.actions";
 })
 export class GestiondepartementComponent implements OnInit {
 
-  constructor(private departementService: EmployeeServiceService, private store: Store<any>, private fb: FormBuilder, private action$ :Actions) {
+  constructor(private userService:UtilisateurServiceService,private departementService: EmployeeServiceService, private store: Store<any>, private fb: FormBuilder, private action$ :Actions) {
   }
 
   ngOnInit() {
@@ -51,7 +52,7 @@ export class GestiondepartementComponent implements OnInit {
     })
 
   }
-
+  public username: any=this.userService.username;
   public employe = [];
   public departement = [];
   cols: any[];

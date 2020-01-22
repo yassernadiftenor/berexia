@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate([this.authi]);
     console.log(this.tokenUser);
   }
-  login(){
+  login() : boolean{
     this.loginn =this.formular.get('login').value;
     console.log(this.loginn);
     this.pwd=this.formular.get('pwd').value;
@@ -44,13 +44,23 @@ export class LoginComponent implements OnInit {
       console.log(data);
       this.bool=data;
       if(data){
+        this.userService.username=this.loginn;
         this.router.navigate(['/departement']);
+
       }else{
+        this.bool =false;
         this.router.navigate(['/Login']);
       }
-    });
 
+    });
+    return this.bool;
   }
+  // public isAuthenticated(): boolean {
+  //   const token = localStorage.getItem('token');
+  //   // Check whether the token is expired and return
+  //   // true or false
+  //   return !this.jwtHelper.isTokenExpired(token);
+  // }
 
 
 

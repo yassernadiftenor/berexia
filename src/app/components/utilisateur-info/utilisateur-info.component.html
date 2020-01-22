@@ -1,0 +1,23 @@
+<h3>Add New User</h3>
+<form nz-form [formGroup]="formular"  >
+  <p>Nom :</p>
+  <input nz-input placeholder="Last Name Employe" [formControlName]="'nom'" nzSize="default"
+         [ngModel]="selectedDep?.nomEmploye"/>
+  <p>Prenom :</p>
+  <input nz-input placeholder="first Name Employe" [formControlName]="'prenom'" nzSize="default"
+         [ngModel]="selectedDep?.prenomEmploye"/>
+  <p>Function :</p>
+  <input nz-input placeholder="function" [formControlName]="'function'" nzSize="default"
+         [ngModel]="selectedDep?.ville"/>
+  <p>Login :</p>
+  <input nz-input placeholder="login" [formControlName]="'login'" nzSize="default"
+         [ngModel]="selectedDep?.ville"/>
+  <p>Password :</p>
+  <input type="password" nz-input placeholder="password" [formControlName]="'password'" nzSize="default"
+         [ngModel]="selectedDep?.ville"/>
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary" (click)="addUser()" >Register</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

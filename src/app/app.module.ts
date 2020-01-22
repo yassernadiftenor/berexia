@@ -22,22 +22,29 @@ import {reducers} from "./state/reducers";
 import {effects} from "./state/effects";
 import { LoginComponent } from './components/login/login.component';
 import {AppRoutingModule} from "./app-routing.module";
-
+import { UtilisateurInfoComponent } from './components/utilisateur-info/utilisateur-info.component';
+import { HomeComponent } from './components/home/home.component';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
  const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'Login' } ,
-  { path: 'employee', component : GestionEmplyeeComponent},
+  { path: '', pathMatch: 'full', redirectTo: 'home' } ,
+   { path: 'home', component : HomeComponent},
+   { path: 'employee', component : GestionEmplyeeComponent},
   { path: 'Login', component : LoginComponent},
-  { path: 'departement', component:GestiondepartementComponent },
+  { path: 'departement', component:GestiondepartementComponent }, { path: 'utilisateur', component:UtilisateurInfoComponent },
   { path: 'Login', children :[
       { path: 'departement', component:GestiondepartementComponent },
-    ]}
+      { path: 'utilisateur', component:UtilisateurInfoComponent },
+      { path: '', component : LoginComponent},
+    ]},
 ]
 @NgModule({
   declarations: [
     AppComponent,
     GestionEmplyeeComponent,
     GestiondepartementComponent,
-    LoginComponent
+    LoginComponent,
+    UtilisateurInfoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

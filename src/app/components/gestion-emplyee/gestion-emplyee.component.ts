@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EmployeServiceService} from "../../services/employe-service.service";
 import {EmployeeServiceService} from "../../services/departement-service.service";
 import {first} from "rxjs/operators";
-import {selectAllEmployee} from "src/app/state";
+
 @Component({
   selector: 'app-gestion-emplyee',
   templateUrl: './gestion-emplyee.component.html',

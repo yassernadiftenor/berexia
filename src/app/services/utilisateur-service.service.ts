@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class UtilisateurServiceService {
 
+  username=''
   constructor(private http: HttpClient) { }
   getUtilisateur() {
     return this.http.get('http://localhost:4200/utilisateurs');
@@ -22,4 +23,5 @@ export class UtilisateurServiceService {
    logInUser(login:any ,pwd :any){
     return this.http.get('http://localhost:4200/utilisateurs/login/'+login+'/'+pwd);
   }
+
 }
