@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
+import {Router} from '@angular/router'
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurServiceService {
-
+  login =true
   username=''
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route:Router) { }
   getUtilisateur() {
     return this.http.get('http://localhost:4200/utilisateurs');
   }
@@ -23,5 +23,13 @@ export class UtilisateurServiceService {
    logInUser(login:any ,pwd :any){
     return this.http.get('http://localhost:4200/utilisateurs/login/'+login+'/'+pwd);
   }
-
+  connected:boolean=true
+  disconnected:boolean=false
+  login1() {
+    this.connected = true;
+    this.route.navigate(['/Login'])
+  }
+  disconnect(){
+    this.connected = false;
+  }
 }

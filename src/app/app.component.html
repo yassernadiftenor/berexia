@@ -4,13 +4,17 @@
     <div class="logo" >
       <a href="http://localhost:4900/home"><img src="http://www.berexia.com/wp-content/uploads/2017/11/logo-berexia-cabinet-conseil.png" ></a>
     </div>
-    <a class="login-icon" href="http://localhost:4900/Login"><i nz-icon nzType="login" nzTheme="outline"></i>Log In</a>
+    <a class="login-icon" (click)="login()" *ngIf="conect()">
+      <i nz-icon nzType="login" nzTheme="outline"></i>Log In</a>
+    <a class="login-icon" (click)="disconnect()" *ngIf="!conect()">
+      <i nz-icon nzType="login" nzTheme="outline"></i>Log out
+    </a>
     <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
     </ul>
 
   </nz-header>
   <nz-layout>
-    <nz-sider nzWidth="200px" nzTheme="light">
+    <nz-sider nzTheme="light">
       <ul nz-menu nzMode="inline" class="sider-menu">
         <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement" [routerLink]="'departement'">
 

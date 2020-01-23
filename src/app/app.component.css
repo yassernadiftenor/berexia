@@ -15,15 +15,24 @@
 
 .header-menu {
   line-height: 64px;
+
 }
 
 .sider-menu {
   height: 100%;
+  width: 160px;
   border-right: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+
 }
 
 .inner-layout {
   padding: 0 24px 24px;
+
 }
 
 nz-breadcrumb {
@@ -48,4 +57,11 @@ nz-header{
 }
 nz-sider{
   margin-top: 32px;
+}
+body{
+  background: white;
+}
+
+nz-layout{
+  background: white;
 }

@@ -30,6 +30,17 @@ export class DepartementEffect {
       )
   );
   @Effect()
+  SearchDepartement$=this.actions$.pipe(ofType(
+    DepartementActions.DepartementActionType.SEARCH_DEPARTEMENT
+  )).pipe(
+    switchMap(({searchword}:any)=>
+      this.departementService.searchDepartement(searchword).pipe(
+        mergeMap((content)=>of (new DepartementActions.SearchDepartementSucess(content))),
+        catchError(error =>of(new DepartementActions.SearchDepartementFail(error)))
+      )
+    )
+  );
+  @Effect()
   createDepartement$=this.actions$.pipe(ofType(
     DepartementActions.DepartementActionType.CREATE_DEPARTEMENT
   )).pipe(

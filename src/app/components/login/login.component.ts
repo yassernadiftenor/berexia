@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   bool :boolean=false;
   selectedDep:any[];
   tokenUser:any;
-  constructor(private router:Router,private datePipe: DatePipe,private fb :FormBuilder,private userService:UtilisateurServiceService) {
+  constructor(private router:Router,private datePipe: DatePipe,private fb :FormBuilder,private userService:UtilisateurServiceService,private route:Router) {
     this.tokenUser = this.datePipe.transform(this.myDate, 'yyyyMMddhhmmss');
   }
 
@@ -44,10 +44,12 @@ export class LoginComponent implements OnInit {
       console.log(data);
       this.bool=data;
       if(data){
+        this.userService.connected=false;
         this.userService.username=this.loginn;
         this.router.navigate(['/departement']);
 
       }else{
+        this.userService.connected=true;
         this.bool =false;
         this.router.navigate(['/Login']);
       }
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
     });
     return this.bool;
   }
+
   // public isAuthenticated(): boolean {
   //   const token = localStorage.getItem('token');
   //   // Check whether the token is expired and return

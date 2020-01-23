@@ -18,6 +18,8 @@ export interface employeeModuleState {
 export const reducers: ActionReducerMap<departementModuleState> = {departementManag: FromReducers.departementReducer}
 
 export const getDepartementsStateModule = createFeatureSelector<departementModuleState>('AppModule')
+
+export const SearchAllDepartements = (state: DepartementState) => Object.assign(state).departementManag.entities;
 export const selectAllDepartments = (state: DepartementState) => Object.assign(state).departementManag.entities;
 export const selectOneDepartments = (state: DepartementState) => Object.assign(state).departementManag.selectedDepartementId;
 export const getCurrentDepartments = createSelector(

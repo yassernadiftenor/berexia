@@ -18,7 +18,11 @@ export enum DepartementActionType
 
   DELETE_DEPARTEMENT= '[departement] delete items',
   DELETE_DEPARTEMENT_FAIL= '[departement] delete items fail',
-  DELETE_DEPARTEMENT_SUCESS= '[departement] delete items sucess'
+  DELETE_DEPARTEMENT_SUCESS= '[departement] delete items sucess',
+
+  SEARCH_DEPARTEMENT ='[departement] search items sucess',
+  SEARCH_DEPARTEMENT_FAIL= '[departement] search items fail',
+  SEARCH_DEPARTEMENT_SUCESS= '[departement] search items sucess'
 }
 
 export class LoadDepartement implements Action {
@@ -95,6 +99,24 @@ export class DeleteDepartementSucess implements Action {
   constructor(public payload: number) {
   }
 }
+export class SearchDepartement implements Action {
+  readonly type = DepartementActionType.SEARCH_DEPARTEMENT;
+
+  constructor(public payload:any) {
+  }
+}
+export class SearchDepartementFail implements Action {
+  readonly type = DepartementActionType.SEARCH_DEPARTEMENT_FAIL;
+
+  constructor(public payload: any) {
+  }
+}
+export class SearchDepartementSucess implements Action {
+  readonly type = DepartementActionType.SEARCH_DEPARTEMENT_SUCESS;
+
+  constructor(public payload: any) {
+  }
+}
 export type Action =
   LoadDepartement |
   LoadDepartementFail|
@@ -107,4 +129,7 @@ export type Action =
   UpdateDepartementFail|
   DeleteDepartement|
   DeleteDepartementFail|
-  DeleteDepartementSucess;
+  DeleteDepartementSucess|
+  SearchDepartement|
+  SearchDepartementSucess|
+  SearchDepartementFail;

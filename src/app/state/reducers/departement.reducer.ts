@@ -95,6 +95,20 @@ export function departementReducer(
         error:action.payload
       };
     }
+    case DepartementActionType.SEARCH_DEPARTEMENT_SUCESS:{
+      return _.merge({}, state, { SearchDepartementSucess: true });
+    }
+    case DepartementActionType.SEARCH_DEPARTEMENT:{
+      return {
+        ...state,
+        entities:{},
+        loading:true,
+        loaded:false
+      }
+    }
+    case DepartementActionType.SEARCH_DEPARTEMENT_FAIL:{
+      return _.merge({}, state, { SearchDepartementSucess: false });
+    }
     default:{return state;}
   }
 }

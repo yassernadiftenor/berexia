@@ -128,7 +128,15 @@ export class GestiondepartementComponent implements OnInit {
     this.store.dispatch(new departementActions.DeleteDepartement(idDepart));
    this.getData();
   }
-
+  search1() {
+    if (this.searchword) {
+      this.store.dispatch(new fromState.SearchDepartementSucess(this.searchword));
+      this.store.select(selectAllDepartments).subscribe(data => this.departement=Object.values(data));
+    }
+    else {
+    this.getData()
+   }
+}
   search() {
     if (this.searchword)
       this.departementService.searchDepartement(this.searchword).subscribe((data: any[]) => {
