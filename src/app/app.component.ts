@@ -26,6 +26,7 @@ export class AppComponent {
     }
   }
   disconnect(){
+    localStorage.removeItem('username');
     this.utilisateurServiceService.connected=true;
      this.route.navigate(['/home']);
   }

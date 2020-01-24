@@ -32,4 +32,14 @@ export class UtilisateurServiceService {
   disconnect(){
     this.connected = false;
   }
+  checkusernameandpassword(uname: string, pwd : string)
+  {
+    if(this.logInUser(uname,pwd)){
+      localStorage.setItem('username',uname);
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

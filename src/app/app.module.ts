@@ -25,12 +25,14 @@ import {AppRoutingModule} from "./app-routing.module";
 import { UtilisateurInfoComponent } from './components/utilisateur-info/utilisateur-info.component';
 import { HomeComponent } from './components/home/home.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { AuthGuardService } from './services/auth-guard.service';
  const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' } ,
    { path: 'home', component : HomeComponent},
-   { path: 'employee', component : GestionEmplyeeComponent},
+   { path: 'employee', component : GestionEmplyeeComponent,canActivate: [AuthGuardService]},
   { path: 'Login', component : LoginComponent},
-  { path: 'departement', component:GestiondepartementComponent }, { path: 'utilisateur', component:UtilisateurInfoComponent },
+  { path: 'departement', component:GestiondepartementComponent,canActivate: [AuthGuardService] },
+   { path: 'utilisateur', component:UtilisateurInfoComponent },
   { path: 'Login', children :[
       { path: 'departement', component:GestiondepartementComponent },
       { path: 'utilisateur', component:UtilisateurInfoComponent },
@@ -64,7 +66,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
     StoreDevtoolsModule.instrument({maxAge: 25}),
 
   ],
-  providers: [{provide: NZ_I18N, useValue: en_US}],
+  providers: [{provide: NZ_I18N, useValue: en_US},[AuthGuardService]],
   bootstrap: [AppComponent]
 })
 export class AppModule {

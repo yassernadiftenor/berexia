@@ -35,28 +35,46 @@ export class LoginComponent implements OnInit {
     this.router.navigate([this.authi]);
     console.log(this.tokenUser);
   }
-  login() : boolean{
+  // login() : boolean{
+  //   this.loginn =this.formular.get('login').value;
+  //   console.log(this.loginn);
+  //   this.pwd=this.formular.get('pwd').value;
+  //   console.log(this.pwd);
+  //   this.userService.logInUser(this.loginn,this.pwd).subscribe((data:any) =>{
+  //     console.log(data);
+  //     this.bool=data;
+  //     if(data){
+  //       this.userService.connected=false;
+  //       this.userService.username=this.loginn;
+  //       this.router.navigate(['/departement']);
+  //
+  //     }else{
+  //       this.userService.connected=true;
+  //       this.bool =false;
+  //       this.router.navigate(['/Login']);
+  //     }
+  //
+  //   });
+  //   return this.bool;
+  // }
+
+  login(){
     this.loginn =this.formular.get('login').value;
-    console.log(this.loginn);
     this.pwd=this.formular.get('pwd').value;
-    console.log(this.pwd);
-    this.userService.logInUser(this.loginn,this.pwd).subscribe((data:any) =>{
-      console.log(data);
-      this.bool=data;
-      if(data){
-        this.userService.connected=false;
-        this.userService.username=this.loginn;
-        this.router.navigate(['/departement']);
-
-      }else{
-        this.userService.connected=true;
-        this.bool =false;
-        this.router.navigate(['/Login']);
-      }
-
-    });
-    return this.bool;
+    var output = this.userService.checkusernameandpassword(this.loginn,this.pwd);
+    if(output==true){
+      this.userService.connected=false;
+            this.userService.username=this.loginn;
+            this.router.navigate(['/departement']);
+    }else {
+      this.userService.connected=true;
+            this.bool =false;
+            this.router.navigate(['/Login']);
+    }
   }
+
+
+
 
   // public isAuthenticated(): boolean {
   //   const token = localStorage.getItem('token');
