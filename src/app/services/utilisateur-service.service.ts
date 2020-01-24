@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router'
+import {of} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurServiceService {
   login =true
+  result :boolean;
   username=''
   constructor(private http: HttpClient,private route:Router) { }
   getUtilisateur() {
@@ -23,7 +25,7 @@ export class UtilisateurServiceService {
    logInUser(login:any ,pwd :any){
     return this.http.get('http://localhost:4200/utilisateurs/login/'+login+'/'+pwd);
   }
-  connected:boolean=true
+  connected:boolean=false;
   disconnected:boolean=false
   login1() {
     this.connected = true;
@@ -32,14 +34,24 @@ export class UtilisateurServiceService {
   disconnect(){
     this.connected = false;
   }
-  checkusernameandpassword(uname: string, pwd : string)
+  checkusernameandpassword (uname: string, pwd : string)
   {
-    if(this.logInUser(uname,pwd)){
-      localStorage.setItem('username',uname);
-      return true;
-    }
-    else{
-      return false;
-    }
+    return this.logInUser(uname,pwd)
+    //   .subscribe((data:any) => {
+    //   console.log("this is data",data)
+    //   if(data){
+    //     this.connected = true;
+    //     localStorage.setItem('username',uname);
+    //     this.result = true;
+    //
+    //   }
+    //   else{
+    //     this.connected = false;
+    //     this.result = false;
+    //
+    //   }
+    // });
+    // return of(this.result)
   }
+
 }

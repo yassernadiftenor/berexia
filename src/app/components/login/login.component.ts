@@ -3,6 +3,7 @@ import { Router }   from '@angular/router';
 import { DatePipe } from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UtilisateurServiceService} from "src/app/services/utilisateur-service.service";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
   //     console.log(data);
   //     this.bool=data;
   //     if(data){
+  //       localStorage.setItem('username',this.loginn);
   //       this.userService.connected=false;
   //       this.userService.username=this.loginn;
   //       this.router.navigate(['/departement']);
@@ -57,20 +59,36 @@ export class LoginComponent implements OnInit {
   //   });
   //   return this.bool;
   // }
-
+  // checkusernameandpassword(uname: string, pwd : string)
+  // {
+  //   if(this.login()){
+  //     localStorage.setItem('username',uname);
+  //     return true;
+  //   }
+  //   else{
+  //     return false;
+  //   }
+  // }
+  //
   login(){
+
     this.loginn =this.formular.get('login').value;
     this.pwd=this.formular.get('pwd').value;
-    var output = this.userService.checkusernameandpassword(this.loginn,this.pwd);
-    if(output==true){
-      this.userService.connected=false;
-            this.userService.username=this.loginn;
-            this.router.navigate(['/departement']);
-    }else {
-      this.userService.connected=true;
-            this.bool =false;
-            this.router.navigate(['/Login']);
+    this.userService.checkusernameandpassword(this.loginn,this.pwd).subscribe(output=>{
+      console.log(output)
+      if(output){
+        localStorage.setItem('username',this.loginn);
+        console.log("this is the return", output);
+        this.userService.connected=true;
+        this.userService.username=this.loginn;
+        this.router.navigate(['/departement']);
+      }else {
+        this.userService.connected=false;
+      this.bool =false;
+      this.router.navigate(['/Login']);
     }
+    });
+
   }
 
 

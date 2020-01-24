@@ -1,13 +1,14 @@
 .logo {
   width: 100px;
   height: 100%;
-  color: #fff;
+  color: black;
   font-size: 30px;
   /*margin-left: 70px;*/
   float: left;
 }
 
 .login-icon{
+  padding-right: 2%;
   color: white;
   float: right;
   margin-top: 20px;
@@ -15,21 +16,29 @@
 
 .header-menu {
   line-height: 64px;
-
+  position: center;
+ padding-left: 15%;
+  background: black;
 }
 
 .sider-menu {
-  height: 100%;
-  width: 160px;
+  margin-left: -8%;
   border-right: 0;
   z-index: 1;
   top: 0;
   left: 0;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 0px;
+
 
 }
-
+.inner-layout.ant-layout{
+  margin-top: 22px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-inline-end: 0px;
+  padding-bottom: 1px;
+}
 .inner-layout {
   padding: 0 24px 24px;
 
@@ -52,16 +61,25 @@ nz-footer {
 }
 
 nz-header{
-
+  padding-left: 0%;
+  padding-right: 0%;
   height: 100px;
 }
 nz-sider{
   margin-top: 32px;
 }
 body{
-  background: white;
+  background: black;
 }
 
 nz-layout{
   background: white;
+}
+img{
+  height: 89px;
+  margin-left: 12px;
+  margin-top: 7px;
+}
+.ant-menu-submenu-title{
+  padding-left: 8px;
 }

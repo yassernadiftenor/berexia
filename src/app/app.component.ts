@@ -14,20 +14,23 @@ export class AppComponent {
 
   title = 'gestionemployee';
   connected:boolean;
-
+    username=this.utilisateurServiceService.username;
    login() {
     this.route.navigate(['/Login']);
   }
-  conect(){
-    if(this.utilisateurServiceService.connected){
-      return  true;
-    }else{
-      return false;
-    }
+  conect() {
+     this.connected = this.utilisateurServiceService.connected;
+    return !this.utilisateurServiceService.connected;
+
+  }
+  checkLogin(){
+    return this.utilisateurServiceService.connected ;
+
   }
   disconnect(){
     localStorage.removeItem('username');
-    this.utilisateurServiceService.connected=true;
+    this.utilisateurServiceService.connected=false;
+    this.connected = false;
      this.route.navigate(['/home']);
   }
 }
