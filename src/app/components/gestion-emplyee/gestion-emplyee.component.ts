@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EmployeServiceService} from "../../services/employe-service.service";
-import {EmployeeServiceService} from "../../services/departement-service.service";
+import {DepartementServiceService} from "../../services/departement-service.service";
+import {ExelService} from "../../services/exel.service"
 import {first} from "rxjs/operators";
 
 @Component({
@@ -11,7 +12,7 @@ import {first} from "rxjs/operators";
 })
 export class GestionEmplyeeComponent implements OnInit {
 
-  constructor(private employeService: EmployeServiceService, private fb: FormBuilder, private fb1 :FormBuilder,private departementService: EmployeeServiceService) {
+  constructor(private excelService:ExelService,private employeService: EmployeServiceService, private fb: FormBuilder, private fb1 :FormBuilder,private departementService: DepartementServiceService) {
 
     this.selectRemp();
   }
@@ -49,7 +50,10 @@ export class GestionEmplyeeComponent implements OnInit {
 
     ];
   }
+  exportAsXLSX():void {
 
+    this.excelService.exportAsExcelFile(this.employe, 'Employe-Info');
+  }
 
   getData() {
     this.employeService.getEmploye().subscribe((data: any[]) => {

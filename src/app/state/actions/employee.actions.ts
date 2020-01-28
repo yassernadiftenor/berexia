@@ -1,5 +1,5 @@
 import{Action} from "@ngrx/store";
-import {Employee}from "../../employee.module";
+import {Employee}from "../../models/employee.module";
 import {Update} from "@ngrx/entity";
 
 export enum EmployeeActionType
@@ -95,7 +95,7 @@ export class DeleteEmployeeSucess implements Action {
   constructor(public payload: number) {
   }
 }
-export type Action =
+export type EmpAction =
   LoadEmployee |
   LoadEmployeeFail|
   LoadEmployeeSucess|

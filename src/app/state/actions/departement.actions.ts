@@ -1,5 +1,5 @@
 import{Action} from "@ngrx/store";
-import {Departement}from "../../departement.module";
+import {Departement}from "../../models/departement.module";
 import {Update} from "@ngrx/entity";
 
 export enum DepartementActionType

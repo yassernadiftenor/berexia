@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {EmployeeServiceService} from 'src/app/services/departement-service.service';
+import {DepartementServiceService} from 'src/app/services/departement-service.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Action, Store} from '@ngrx/store'
 import * as departementActions from "src/app/state/actions/departement.actions";
 import {state} from "@angular/animations";
 import * as fromState from "src/app/state";
-import {Departement} from "../../departement.module";
+import {Departement} from "../../models/departement.module";
 import {selectAllDepartments} from "src/app/state";
 import {Actions, ofType} from "@ngrx/effects";
 import {DepartementActionType} from "src/app/state/actions/departement.actions";
 import {UtilisateurServiceService} from "src/app/services/utilisateur-service.service"
+import {ExelService} from "../../services/exel.service";
 @Component({
   selector: 'app-gestiondepartement',
   templateUrl: './gestiondepartement.component.html',
@@ -17,7 +18,7 @@ import {UtilisateurServiceService} from "src/app/services/utilisateur-service.se
 })
 export class GestiondepartementComponent implements OnInit {
 
-  constructor(private userService:UtilisateurServiceService,private departementService: EmployeeServiceService, private store: Store<any>, private fb: FormBuilder, private action$ :Actions) {
+  constructor(private excelService:ExelService,private userService:UtilisateurServiceService, private departementService: DepartementServiceService, private store: Store<any>, private fb: FormBuilder, private action$ :Actions) {
   }
 
   ngOnInit() {
@@ -66,7 +67,10 @@ export class GestiondepartementComponent implements OnInit {
   showModal(): void {
     this.isVisible = true;
   }
-
+  exportAsXLSX():void {
+    //this.store.select(selectAllDepartments).subscribe(data => this.departement=Object.values(data));
+    this.excelService.exportAsExcelFile(this.departement, 'departement');
+  }
   // getData() {
   //   this.departementService.getDepartements().subscribe((data: any[]) => {
   //     this.departement = Array.from(Object.keys(data), k => data[k]);

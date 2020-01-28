@@ -3,19 +3,23 @@ import * as FromReducers from "src/app/state/reducers/departement.reducer"
 import {DepartementState} from "src/app/state/reducers/departement.reducer";
 import * as FromReducerEmp from "src/app/state/reducers/employee.reducer";
 import {EmployeeState} from "src/app/state/reducers/employee.reducer";
+import {utilisateurReducer} from "src/app/state/reducers/utilisateur.reducer";
+import {utilisateurState} from "src/app/state/reducers/utilisateur.reducer"
 // import {} from "";
 
 export interface departementModuleState {
 
   departementManag: FromReducers.DepartementState,
-
-}
-export interface employeeModuleState {
   employeeManag:FromReducerEmp.EmployeeState,
+  utilisateurManag:utilisateurState
 }
 
 // @ts-ignore
-export const reducers: ActionReducerMap<departementModuleState> = {departementManag: FromReducers.departementReducer}
+export const reducers: ActionReducerMap<departementModuleState> = {
+  departementManag: FromReducers.departementReducer,
+  employeeManag:FromReducerEmp.EmployeeReducer,
+  utilisateurManag:utilisateurReducer
+}
 
 export const getDepartementsStateModule = createFeatureSelector<departementModuleState>('AppModule')
 
@@ -28,3 +32,4 @@ export const getCurrentDepartments = createSelector(
   state => Object.assign(state).departementManag.entities[state.departementManag.selectedDepartementId]
 );
 export const selectAllEmployee = (state: EmployeeState) => Object.assign(state).employeeManag.AllEmployee;
+export const selectAllEmployee1 = (state: utilisateurState) => Object.assign(state).utilisateurManag.connected;

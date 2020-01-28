@@ -27,12 +27,16 @@
     "@ngrx/schematics": "^8.6.0",
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
+    "exceljs": "^3.6.1",
+    "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "ng-zorro-antd": "^8.5.2",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.0-rc.2",
     "rxjs": "~6.4.0",
+    "save": "^2.4.0",
     "tslib": "^1.10.0",
+    "xlsx": "^0.15.4",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

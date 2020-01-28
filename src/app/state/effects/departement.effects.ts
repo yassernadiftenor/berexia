@@ -4,16 +4,16 @@ import {Actions,Effect,ofType} from "@ngrx/effects";
 import {Action} from "@ngrx/store";
 
 import {Observable,of} from "rxjs";
-import {map, mergeMap, catchError, switchMap} from "rxjs/operators";
+import {map, mergeMap, catchError, switchMap, tap} from "rxjs/operators";
 
 import * as DepartementActions from "../actions/departement.actions";
-import {Departement} from "../../departement.module";
-import {EmployeeServiceService} from 'src/app/services/departement-service.service';
+import {Departement} from "../../models/departement.module";
+import {DepartementServiceService} from 'src/app/services/departement-service.service';
 @Injectable()
 export class DepartementEffect {
   constructor(
     private actions$:Actions,
-    private departementService:EmployeeServiceService
+    private departementService:DepartementServiceService
 
   ) {}
 
@@ -51,6 +51,7 @@ export class DepartementEffect {
       )
     )
   );
+
   // @Effect()
   // createDepartement$: Observable<Action> = this.actions$.pipe(
   //   ofType<DepartementActions.CreateDepartement>(

@@ -1,10 +1,10 @@
 import * as DepartementActions from "../actions/departement.actions"
 import {DepartementActionType} from "../actions/departement.actions"
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
-import {Employee} from "../../employee.module";
+import {Departement} from "../../models/departement.module";
 import * as _ from "lodash";
 
-export interface DepartementState extends EntityState<Employee>{
+export interface DepartementState extends EntityState<Departement>{
   selectedDepartementId: number | null;
   AllDepartement:any;
   loaded:boolean;
@@ -14,7 +14,7 @@ export interface DepartementState extends EntityState<Employee>{
 }
 
 
-export const departementAdapter: EntityAdapter<Employee> = createEntityAdapter<Employee>();
+export const departementAdapter: EntityAdapter<Departement> = createEntityAdapter<Departement>();
 export const defaultDepartement: DepartementState = {
   ids: [],
   entities: {},

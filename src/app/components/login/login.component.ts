@@ -4,6 +4,13 @@ import { DatePipe } from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UtilisateurServiceService} from "src/app/services/utilisateur-service.service";
 import {Observable} from "rxjs";
+import {select, Store} from "@ngrx/store";
+import * as fromState from "src/app/state";
+import { NzMessageService } from 'ng-zorro-antd/message';
+import {Actions, ofType} from "@ngrx/effects";
+import {selectAllEmployee1} from "src/app/state";
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +25,7 @@ export class LoginComponent implements OnInit {
   bool :boolean=false;
   selectedDep:any[];
   tokenUser:any;
-  constructor(private router:Router,private datePipe: DatePipe,private fb :FormBuilder,private userService:UtilisateurServiceService,private route:Router) {
+  constructor(private action$ :Actions,private message: NzMessageService,private store: Store<any> ,private router:Router,private datePipe: DatePipe,private fb :FormBuilder,private userService:UtilisateurServiceService,private route:Router) {
     this.tokenUser = this.datePipe.transform(this.myDate, 'yyyyMMddhhmmss');
   }
 
@@ -27,7 +34,10 @@ export class LoginComponent implements OnInit {
       login: ['', Validators.required],
       pwd : ['', Validators.required]
     })
+    this.action$.pipe(ofType(fromState.UtilisateurActionType.LOGIN_UTILISATEUR_FAIL)).subscribe(() => {
 
+      //this.message.create(type, `This is a message of error`);
+    })
   }
 
 
@@ -70,26 +80,57 @@ export class LoginComponent implements OnInit {
   //   }
   // }
   //
+
+  loginStoreTest(){
+    const payload = {
+      login:this.formular.get('login').value,
+      password: this.formular.get('pwd').value
+    };
+    this.store.dispatch(new fromState.LoginUtilisateur(payload));
+
+  }
+  data :any;
   login(){
 
-    this.loginn =this.formular.get('login').value;
-    this.pwd=this.formular.get('pwd').value;
-    this.userService.checkusernameandpassword(this.loginn,this.pwd).subscribe(output=>{
-      console.log(output)
-      if(output){
-        localStorage.setItem('username',this.loginn);
-        console.log("this is the return", output);
-        this.userService.connected=true;
-        this.userService.username=this.loginn;
-        this.router.navigate(['/departement']);
-      }else {
-        this.userService.connected=false;
+    const payload = {
+      login:this.formular.get('login').value,
+      password: this.formular.get('pwd').value
+    };
+    this.store.dispatch(new fromState.LoginUtilisateur(payload));
+    this.store.select(selectAllEmployee1).subscribe(data=>
+      this.data=data);
+    console.log("this is the return of "+this.data);
+    if(this.data){
+      console.log(this.data);
+      localStorage.setItem('username',payload.login);
+      console.log("this is the return", this.data);
+      this.userService.connected=true;
+      this.userService.username=this.loginn;
+      this.router.navigate(['/departement']);
+    }else {
+      this.userService.connected=false;
       this.bool =false;
       this.router.navigate(['/Login']);
     }
-    });
-
   }
+
+    // )
+    // this.userService.checkusernameandpassword(this.loginn,this.pwd).subscribe(output=>{
+    //   console.log(output)
+    //   if(output){
+    //     localStorage.setItem('username',this.loginn);
+    //     console.log("this is the return", output);
+    //     this.userService.connected=true;
+    //     this.userService.username=this.loginn;
+    //     this.router.navigate(['/departement']);
+    //   }else {
+    //     this.userService.connected=false;
+    //   this.bool =false;
+    //   this.router.navigate(['/Login']);
+    // }
+    // });
+
+
 
 
 

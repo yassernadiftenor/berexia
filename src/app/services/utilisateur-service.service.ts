@@ -36,6 +36,7 @@ export class UtilisateurServiceService {
   }
   checkusernameandpassword (uname: string, pwd : string)
   {
+    //this.username= uname;
     return this.logInUser(uname,pwd)
     //   .subscribe((data:any) => {
     //   console.log("this is data",data)

@@ -5,6 +5,7 @@
   </ng-template>
 </nz-back-top>
 <button nz-button [nzType]="'primary'" (click)="showModal()"><span><i nz-icon nzType="plus" nzTheme="outline"></i>Add new departement</span></button>
+<button nz-button [nzType]="'primary'" (click)="exportAsXLSX()"><i nz-icon nzType="file-excel" nzTheme="outline"></i>Export to Excel</button>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Add new departement" [nzFooter]="addNewDepartFooter" (nzOnCancel)="handleCancel()">
   <form nz-form [formGroup]="formular">
     <p>Nom Departement :</p>
@@ -24,7 +25,7 @@
   </ng-template>
 </nz-modal>
 <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-  <input type="text" nz-input placeholder="Look for departement by name" (input)="search1()" [(ngModel)]="searchword"/>
+  <input type="text" nz-input placeholder="Look for departement by name" (input)="search()" [(ngModel)]="searchword"/>
 </nz-input-group>
 <ng-template #suffixButton>
 </ng-template>

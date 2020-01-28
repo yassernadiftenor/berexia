@@ -7,7 +7,7 @@ import {Observable,of} from "rxjs";
 import {map, mergeMap, catchError, switchMap} from "rxjs/operators";
 
 import * as EmployeeActions from "../actions/employee.actions";
-import {Employee} from "../../employee.module";
+import {Employee} from "../../models/employee.module";
 import {EmployeServiceService} from 'src/app/services/employe-service.service';
 @Injectable()
 export class EmployeeEffect {

@@ -1,3 +1,4 @@
 export * from "./departement.actions"
-// @ts-ignore
+export * from "./utilisateur.actions"
 export * from "./employee.actions"
+

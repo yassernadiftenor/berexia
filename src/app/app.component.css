@@ -54,10 +54,11 @@ nz-content {
   min-height: 280px;
 }
 nz-footer {
-  text-align: center;
-  bottom: 0;
   position: fixed;
+  text-align: left;
+  bottom: 0;
   width: 100% ;
+  background: white;
 }
 
 nz-header{

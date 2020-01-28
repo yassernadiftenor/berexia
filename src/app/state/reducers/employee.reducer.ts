@@ -1,7 +1,7 @@
 import * as EmployeeActions from "../actions/employee.actions"
 import {EmployeeActionType} from "../actions/employee.actions"
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
-import {Employee} from "../../employee.module";
+import {Employee} from "../../models/employee.module";
 import * as _ from "lodash";
 
 export interface EmployeeState extends EntityState<Employee>{
@@ -30,7 +30,7 @@ export const defaultEmployee: EmployeeState = {
 export const initialState = employeeAdapter.getInitialState(defaultEmployee);
 export function EmployeeReducer(
   state=initialState,
-  action:EmployeeActions.Action
+  action:EmployeeActions.EmpAction
 ):EmployeeState {
   switch (action.type) {
     case EmployeeActions.EmployeeActionType.LOAD_EMPLOYEE:{
