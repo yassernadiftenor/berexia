@@ -39,31 +39,11 @@ export function utilisateurReducer(
       };
     }
     case UtilisateurActionType.LOGIN_UTILISATEUR_SUCESS:{
-      return {
-        ...state,
-        entities:{},
-        user:{
-          login:action.payload.login,
-        },
-        connected:true
-      };
-    }case UtilisateurActionType.LOGIN_UTILISATEUR:{
-      return {
-        ...state,
-        entities:{},
-        user:{
-          login:action.payload.login,
-        },
-        connected:true
-      };
+        return _.merge({}, state, { connected:true});
     }
     case UtilisateurActionType.LOGIN_UTILISATEUR_FAIL:{
-      return {
-        ...state,
-        entities:{},
-        error:"mots de pass est incorrect",
-        connected:false,
-      };
+      return _.merge({}, state, { connected:false});
+
     }
     default :{
       return state;

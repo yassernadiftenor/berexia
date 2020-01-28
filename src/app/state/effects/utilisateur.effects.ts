@@ -8,29 +8,33 @@ import {UtilisateurServiceService} from 'src/app/services/utilisateur-service.se
 import {Observable, of} from "rxjs";
 import {Router} from "@angular/router";
 import {ifTrue} from "codelyzer/util/function";
+import {LoginUtilisateur, LoginUtilisateurFail, LoginUtilisateurSuccess} from "../actions/utilisateur.actions";
+import {NzMessageService} from "ng-zorro-antd/message";
+import * as fromState from "../index";
 
 @Injectable()
 export class UtilisateurEffect {
   constructor(
+    private message: NzMessageService,
     private router:Router,
     private actions$: Actions,
     private utilisateurService: UtilisateurServiceService
   ) {}
   // @Effect()
-  // LogIn: Observable<any> = this.actions.pipe(
+  // LogIn: Observable<any> = this.actions$.pipe(
   //   ofType(UtilisateurActions.UtilisateurActionType.LOGIN_UTILISATEUR)
-  // ).map((action: LoginUtilisateur) => action.payload)
-  //   .switchMap(payload => {
-  //     return this.utilisateurService.checkusernameandpassword(payload.email, payload.password)
-  //       .map((user) => {
+  // ,map((action: LoginUtilisateur) => action.payload)).pipe(
+  //   switchMap(payload => {
+  //     return this.utilisateurService.checkusernameandpassword(payload.email, payload.password)})).subscribe(
+  //       map((user) => {
   //         console.log(user);
   //         return new LoginUtilisateurSuccess({token: user.token, email: payload.email});
   //       })
-  //       .catch((error) => {
+  //     ,catchError((error) => {
   //         console.log(error);
   //         return Observable.of(new LoginUtilisateurFail({ error: error }));
-  //       });
-  //   });
+  //       })
+  //   );
   var1:any;
   @Effect()
   LogIn$=this.actions$.pipe(ofType(
@@ -38,6 +42,19 @@ export class UtilisateurEffect {
   )).pipe(
     switchMap(({payload}:any)=>
       this.utilisateurService.logInUser(payload.login,payload.password)
+        .pipe(map(res=>{
+          if(res){
+            this.var1=res;
+            this.utilisateurService.connected=true;
+            console.log("this is var"+this.var1);
+            localStorage.setItem('username',payload.login);
+            this.router.navigate(['/departement']);
+          }else{
+            this.message.create(fromState.UtilisateurActionType.LOGIN_UTILISATEUR_FAIL, `the username or password is incorrect check again`);
+          }
+          this.var1=res;
+          console.log("this is var"+this.var1);
+        }),catchError(error =>of(new UtilisateurActions.LoginUtilisateurFail(error))) )
         .pipe(
           mergeMap((content)=>of (new UtilisateurActions.LoginUtilisateurSuccess(content))),
           catchError(error =>of(new UtilisateurActions.LoginUtilisateurFail(error)))
@@ -53,7 +70,6 @@ export class UtilisateurEffect {
   LogInSuccess: Observable<any> = this.actions$.pipe(
     ofType( UtilisateurActions.UtilisateurActionType.LOGIN_UTILISATEUR_SUCESS),
     tap((user) => {
-      this.utilisateurService.connected=true;
       console.log("the username"+user.payload.login);
       localStorage.setItem('username', user.payload.login);
       this.router.navigate(['/departement']);

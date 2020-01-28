@@ -35,8 +35,7 @@ export class LoginComponent implements OnInit {
       pwd : ['', Validators.required]
     })
     this.action$.pipe(ofType(fromState.UtilisateurActionType.LOGIN_UTILISATEUR_FAIL)).subscribe(() => {
-
-      //this.message.create(type, `This is a message of error`);
+      this.message.create(fromState.UtilisateurActionType.LOGIN_UTILISATEUR_FAIL, `This is a message of error`);
     })
   }
 
@@ -87,7 +86,6 @@ export class LoginComponent implements OnInit {
       password: this.formular.get('pwd').value
     };
     this.store.dispatch(new fromState.LoginUtilisateur(payload));
-
   }
   data :any;
   login(){
