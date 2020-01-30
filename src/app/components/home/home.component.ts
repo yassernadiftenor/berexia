@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
   array:any;
   ngOnInit() {
-
+   
     this.array = [1, 2, 3, 4];
   }
 
