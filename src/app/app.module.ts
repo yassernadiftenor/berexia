@@ -27,13 +27,13 @@ import { HomeComponent } from './components/home/home.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { AuthGuardService } from './services/auth-guard.service';
  const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' } ,
+   { path: '', pathMatch: 'full', redirectTo: 'home' } ,
    { path: 'home', component : HomeComponent},
    { path: 'employee', component : GestionEmplyeeComponent,canActivate: [AuthGuardService]},
-  { path: 'Login', component : LoginComponent},
-  { path: 'departement', component:GestiondepartementComponent,canActivate: [AuthGuardService] },
+   { path: 'Login', component : LoginComponent},
+   { path: 'departement', component:GestiondepartementComponent,canActivate: [AuthGuardService] },
    { path: 'utilisateur', component:UtilisateurInfoComponent },
-  { path: 'Login', children :[
+   { path: 'Login', children :[
       { path: 'departement', component:GestiondepartementComponent },
       { path: 'utilisateur', component:UtilisateurInfoComponent },
       { path: '', component : LoginComponent},

@@ -11,10 +11,11 @@ import {Router} from "@angular/router";
 export class AppComponent {
   constructor(private  utilisateurServiceService: UtilisateurServiceService,private route:Router ) {
   }
-
+  text= this.utilisateurServiceService.username;
   title = 'gestionemployee';
   connected:boolean;
-    username=this.utilisateurServiceService.username;
+  username=this.utilisateurServiceService.username;
+
    login() {
     this.route.navigate(['/Login']);
   }

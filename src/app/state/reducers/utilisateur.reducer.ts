@@ -38,8 +38,16 @@ export function utilisateurReducer(
         error:action.payload,
       };
     }
+    case UtilisateurActionType.LOGIN_UTILISATEUR:{
+      return {
+        ...state,
+        entities:action.payload,
+        user:action.payload,
+        error:"",
+      };
+    }
     case UtilisateurActionType.LOGIN_UTILISATEUR_SUCESS:{
-        return _.merge({}, state, { connected:true});
+        return _.merge({}, state, { entities:action.payload,user:action.payload});
     }
     case UtilisateurActionType.LOGIN_UTILISATEUR_FAIL:{
       return _.merge({}, state, { connected:false});

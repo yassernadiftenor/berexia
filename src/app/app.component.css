@@ -33,7 +33,7 @@
 
 }
 .inner-layout.ant-layout{
-  margin-top: 22px;
+  margin-top: 0px;
   padding-left: 1px;
   padding-right: 1px;
   padding-inline-end: 0px;
@@ -50,7 +50,7 @@ nz-breadcrumb {
 
 nz-content {
   background: #fff;
-  padding: 24px;
+  padding: 0px;
   min-height: 280px;
 }
 nz-footer {
@@ -71,6 +71,7 @@ nz-sider{
   margin-top: 32px;
 }
 body{
+
   background: black;
 }
 
@@ -84,4 +85,8 @@ img{
 }
 .ant-menu-submenu-title{
   padding-left: 8px;
+}
+.ant-avatar-lg{
+  margin-left: 82%;
+  margin-top: 32px;
 }

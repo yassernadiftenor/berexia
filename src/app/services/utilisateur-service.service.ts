@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router'
-import {of} from "rxjs";
+import {User}from "../models/user"
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurServiceService {
   login =true
   result :boolean;
-  username=''
+  username='';
+
   constructor(private http: HttpClient,private route:Router) { }
   getUtilisateur() {
     return this.http.get('http://localhost:4200/utilisateurs');
@@ -25,6 +26,10 @@ export class UtilisateurServiceService {
    logInUser(login:any ,pwd :any){
     return this.http.get('http://localhost:4200/utilisateurs/login/'+login+'/'+pwd);
   }
+  logInUser1(login:any ,pwd :any){
+    return this.http.get('http://localhost:4200/utilisateurs/login1/'+login+'/'+pwd);
+  }
+  userIn:User;
   connected:boolean=false;
   disconnected:boolean=false
   login1() {

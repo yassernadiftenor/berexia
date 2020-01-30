@@ -8,13 +8,17 @@
     <a class="login-icon" (click)="login()" *ngIf="conect()">
       <i nz-icon nzType="login" nzTheme="outline"></i>Log In </a>
     <a class="login-icon" (click)="disconnect()" *ngIf="connected">
-      <i nz-icon nzType="login" nzTheme="outline"></i>Log out {{username}}
-    </a>
-
-
+      <i nz-icon nzType="login" nzTheme="outline"></i>Log out
+    </a><nz-avatar
+    *ngIf="connected"
+    [ngStyle]="{ 'background-color': '#f56a00' }"
+    [nzText]="utilisateurServiceService.username"
+    nzSize="large"
+    style="vertical-align: middle;"
+  ></nz-avatar>
   </nz-header>
   <nz-layout>
-    <nz-sider nzTheme="light">
+    <nz-sider nzTheme="light" *ngIf="connected">
       <ul nz-menu nzMode="inline" class="sider-menu">
         <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement" [routerLink]="'departement'">
 

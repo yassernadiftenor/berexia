@@ -7,8 +7,6 @@ import {UtilisateurServiceService} from 'src/app/services/utilisateur-service.se
 
 import {Observable, of} from "rxjs";
 import {Router} from "@angular/router";
-import {ifTrue} from "codelyzer/util/function";
-import {LoginUtilisateur, LoginUtilisateurFail, LoginUtilisateurSuccess} from "../actions/utilisateur.actions";
 import {NzMessageService} from "ng-zorro-antd/message";
 import * as fromState from "../index";
 
@@ -41,12 +39,14 @@ export class UtilisateurEffect {
     UtilisateurActions.UtilisateurActionType.LOGIN_UTILISATEUR
   )).pipe(
     switchMap(({payload}:any)=>
-      this.utilisateurService.logInUser(payload.login,payload.password)
+      this.utilisateurService.logInUser1(payload.login,payload.password)
         .pipe(map(res=>{
-          if(res){
+          if(res!=null){
+            this.utilisateurService.userIn=res;
             this.var1=res;
             this.utilisateurService.connected=true;
             console.log("this is var"+this.var1);
+            this.utilisateurService.username=payload.login;
             localStorage.setItem('username',payload.login);
             this.router.navigate(['/departement']);
           }else{
@@ -56,7 +56,7 @@ export class UtilisateurEffect {
           console.log("this is var"+this.var1);
         }),catchError(error =>of(new UtilisateurActions.LoginUtilisateurFail(error))) )
         .pipe(
-          mergeMap((content)=>of (new UtilisateurActions.LoginUtilisateurSuccess(content))),
+          mergeMap((content)=>of (new UtilisateurActions.LoginUtilisateurSuccess(this.var1))),
           catchError(error =>of(new UtilisateurActions.LoginUtilisateurFail(error)))
       )));
   // )).subscribe((res :any )=>{
@@ -66,15 +66,15 @@ export class UtilisateurEffect {
   //     this.utilisateurService.connected=false;
   //   }
   // });
-  @Effect({ dispatch: false })
-  LogInSuccess: Observable<any> = this.actions$.pipe(
-    ofType( UtilisateurActions.UtilisateurActionType.LOGIN_UTILISATEUR_SUCESS),
-    tap((user) => {
-      console.log("the username"+user.payload.login);
-      localStorage.setItem('username', user.payload.login);
-      this.router.navigate(['/departement']);
-    })
-  );
+  // @Effect({ dispatch: false })
+  // LogInSuccess: Observable<any> = this.actions$.pipe(
+  //   ofType( UtilisateurActions.UtilisateurActionType.LOGIN_UTILISATEUR_SUCESS),
+  //   tap((user) => {
+  //     console.log("the username"+user.payload.login);
+  //     localStorage.setItem('username', user.payload.login);
+  //     this.router.navigate(['/departement']);
+  //   })
+  // );
   @Effect({ dispatch: false })
   LogInFailure: Observable<any> = this.actions$.pipe(
     ofType( UtilisateurActions.UtilisateurActionType.LOGIN_UTILISATEUR_FAIL));
