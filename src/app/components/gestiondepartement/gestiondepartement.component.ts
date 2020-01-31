@@ -63,7 +63,14 @@ export class GestiondepartementComponent implements OnInit {
   isVisible = false;
   selectedDep: any = null;
   searchword: string = '';
-
+  function=this.userService.function;
+  Access(): boolean{
+    if(this.function.toUpperCase()==='ADMIN'){
+      return true;
+    }else{
+      return false;
+    }
+  }
   showModal(): void {
     this.isVisible = true;
   }

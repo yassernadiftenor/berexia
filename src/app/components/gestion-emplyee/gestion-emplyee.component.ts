@@ -4,6 +4,7 @@ import {EmployeServiceService} from "../../services/employe-service.service";
 import {DepartementServiceService} from "../../services/departement-service.service";
 import {ExelService} from "../../services/exel.service"
 import {first} from "rxjs/operators";
+import {UtilisateurServiceService} from "../../services/utilisateur-service.service";
 
 @Component({
   selector: 'app-gestion-emplyee',
@@ -12,7 +13,7 @@ import {first} from "rxjs/operators";
 })
 export class GestionEmplyeeComponent implements OnInit {
 
-  constructor(private excelService:ExelService,private employeService: EmployeServiceService, private fb: FormBuilder, private fb1 :FormBuilder,private departementService: DepartementServiceService) {
+  constructor(private excelService:ExelService,private employeService: EmployeServiceService, private fb: FormBuilder, private fb1 :FormBuilder,private departementService: DepartementServiceService,private userService: UtilisateurServiceService) {
 
     this.selectRemp();
   }
@@ -29,6 +30,14 @@ export class GestionEmplyeeComponent implements OnInit {
   listOfDepartement = [];
   listDepart ;
   buttonInvisible:boolean=false;
+  function=this.userService.function;
+  Access(): boolean{
+    if(this.function.toUpperCase()==='ADMIN'){
+      return true;
+    }else{
+      return false;
+    }
+  }
   ngOnInit() {
     this.formular = this.fb.group({
       nomEmploye: ['', Validators.required],

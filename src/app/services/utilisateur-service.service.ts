@@ -9,6 +9,7 @@ export class UtilisateurServiceService {
   login =true
   result :boolean;
   username='';
+  function='';
 
   constructor(private http: HttpClient,private route:Router) { }
   getUtilisateur() {
@@ -21,7 +22,7 @@ export class UtilisateurServiceService {
     return this.http.put('http://localhost:4200/utilisateurs/update', user);
   }
   deleteUtilisateur(id: any) {
-    return this.http.delete('http://localhost:4200/utilisateurs/'+id);
+    return this.http.delete('http://localhost:4200/utilisateurs/delete/'+id);
   }
    logInUser(login:any ,pwd :any){
     return this.http.get('http://localhost:4200/utilisateurs/login/'+login+'/'+pwd);

@@ -1,0 +1,55 @@
+<h3 class="first">Utilisateur Information</h3>
+<button nz-button [nzType]="'primary'" (click)="showModal()" ><span><i nz-icon nzType="plus" nzTheme="outline"></i>Add new departement</span></button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add new User" [nzFooter]="addNewUser"  (nzOnCancel)="handleCancel()">
+  <form nz-form [formGroup]="formular"  >
+    <p>Nom :</p>
+    <input nz-input placeholder="Last Name Employe" [formControlName]="'nom'" nzSize="default"
+           [ngModel]="selectedDep?.nom"/>
+    <p>Prenom :</p>
+    <input nz-input placeholder="first Name Employe" [formControlName]="'prenom'" nzSize="default"
+           [ngModel]="selectedDep?.prenom"/>
+    <p>Function :</p>
+    <input nz-input placeholder="function" [formControlName]="'function'" nzSize="default"
+           [ngModel]="selectedDep?.function"/>
+    <p>Login :</p>
+    <input nz-input placeholder="login" [formControlName]="'login'" nzSize="default"
+           [ngModel]="selectedDep?.login"/>
+    <p>Password :</p>
+    <input type="password" nz-input placeholder="password" [formControlName]="'password'" nzSize="default"
+           [ngModel]="selectedDep?.password"/>
+    <ng-template #addNewUser>
+      <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+      <button nz-button nzType="primary" (click)="handleOk()" [disabled]="!formular.valid">valider</button>
+    </ng-template>
+  </form>
+</nz-modal>
+
+<p-table [columns]="cols" [value]="utilisateur">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{rowData[col?.field]}}
+      </td>
+      <td >
+        <button nz-button nzType="primary" (click)="update(rowData)"><i nz-icon nzType="edit" nzTheme="outline"></i>Update</button>
+      </td>
+      <td >
+        <button nz-button nzType="primary" nz-popconfirm
+                nzPopconfirmTitle="Are you sure delete this task?"
+                (nzOnConfirm)="delete(rowData.id)"
+                (nzOnCancel)="handleCancel()"
+
+                nzPopconfirmPlacement="bottomLeft"
+                nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>Delete</button>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>

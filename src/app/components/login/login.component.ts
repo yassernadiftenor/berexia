@@ -93,6 +93,7 @@ export class LoginComponent implements OnInit {
     this.store.select(selectAllEmployee1).subscribe(data => {
       this.userService.userIn=data;
       this.userService.username=this.userService.userIn.nom;
+      this.userService.function=this.userService.userIn.function;
     });
 
     //console.log("the user object"+this.userService.userIn);

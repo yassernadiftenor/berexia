@@ -2,7 +2,7 @@
  <nz-layout>
   <nz-header  >
     <div class="logo" >
-      <a href="http://localhost:4900/home"><img src="http://www.berexia.com/wp-content/uploads/2017/11/logo-berexia-cabinet-conseil.png" ></a>
+      <a (click)="home()"><img src="http://www.berexia.com/wp-content/uploads/2017/11/logo-berexia-cabinet-conseil.png" ></a>
     </div>
 
     <a class="login-icon" (click)="login()" *ngIf="conect()">
@@ -18,12 +18,16 @@
   ></nz-avatar>
   </nz-header>
   <nz-layout>
-    <nz-sider nzTheme="light" *ngIf="connected">
+    <nz-sider nzTheme="light" *ngIf="connected" >
       <ul nz-menu nzMode="inline" class="sider-menu">
-        <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement" [routerLink]="'departement'">
+        <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement"  [routerLink]="'departement'">
 
         </li>
-        <li nz-submenu nzTitle="list employee" nzIcon="user" [routerLink]="['employee']">
+
+        <li nz-submenu nzTitle="list employee" nzIcon="idcard"  [routerLink]="['employee']">
+        </li>
+
+        <li nz-submenu nzTitle="list utilisateur" *ngIf="Access()"  nzIcon="user" [routerLink]="['UtilisateurList']">
 
         </li>
       </ul>
@@ -31,9 +35,10 @@
     <nz-layout class="inner-layout">
       <nz-breadcrumb>
       </nz-breadcrumb>
-      <nz-content><router-outlet></router-outlet>
+      <nz-content>
+        <router-outlet></router-outlet>
       </nz-content>
-      <nz-footer>Berexia 2019/2020© copyright</nz-footer>
+      <nz-footer>Berexia 2019/2020 © copyright</nz-footer>
     </nz-layout>
   </nz-layout>
 </nz-layout>

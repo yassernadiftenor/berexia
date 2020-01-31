@@ -47,7 +47,11 @@ export function utilisateurReducer(
       };
     }
     case UtilisateurActionType.LOGIN_UTILISATEUR_SUCESS:{
-        return _.merge({}, state, { entities:action.payload,user:action.payload});
+      return {
+        ...state,
+        user:action.payload
+      }
+        // return _.merge({}, state, { entities:action.payload,user:action.payload});
     }
     case UtilisateurActionType.LOGIN_UTILISATEUR_FAIL:{
       return _.merge({}, state, { connected:false});

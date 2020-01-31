@@ -26,6 +26,7 @@ import { UtilisateurInfoComponent } from './components/utilisateur-info/utilisat
 import { HomeComponent } from './components/home/home.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { AuthGuardService } from './services/auth-guard.service';
+import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
  const routes: Routes = [
    { path: '', pathMatch: 'full', redirectTo: 'home' } ,
    { path: 'home', component : HomeComponent},
@@ -33,6 +34,7 @@ import { AuthGuardService } from './services/auth-guard.service';
    { path: 'Login', component : LoginComponent},
    { path: 'departement', component:GestiondepartementComponent,canActivate: [AuthGuardService] },
    { path: 'utilisateur', component:UtilisateurInfoComponent },
+   { path: 'UtilisateurList', component:UtilisateurComponent },
    { path: 'Login', children :[
       { path: 'departement', component:GestiondepartementComponent },
       { path: 'utilisateur', component:UtilisateurInfoComponent },
@@ -46,7 +48,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     GestiondepartementComponent,
     LoginComponent,
     UtilisateurInfoComponent,
-    HomeComponent
+    HomeComponent,
+    UtilisateurComponent
   ],
   imports: [
     BrowserModule,
