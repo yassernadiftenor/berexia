@@ -11,6 +11,8 @@
   color: #fff;
   text-align: center;
   font-size: 20px;
+  margin-top: 13px;
+  margin-left: 63px;
 }
 
 :host ::ng-deep strong {

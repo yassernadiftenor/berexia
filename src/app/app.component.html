@@ -18,8 +18,13 @@
   ></nz-avatar>
   </nz-header>
   <nz-layout>
-    <nz-sider nzTheme="light" *ngIf="connected" >
-      <ul nz-menu nzMode="inline" class="sider-menu">
+
+    <nz-sider nzCollapsible nzTheme="light" *ngIf="connected"
+              [(nzCollapsed)]="isCollapsed"
+              [nzBreakpoint]="'lg'"
+              [nzCollapsedWidth]="10"
+              [nzZeroTrigger]="zeroTrigger">
+      <ul nz-menu nzMode="inline" class="sider-menu" nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement"  [routerLink]="'departement'">
 
         </li>
@@ -32,13 +37,16 @@
         </li>
       </ul>
     </nz-sider>
+
     <nz-layout class="inner-layout">
-      <nz-breadcrumb>
-      </nz-breadcrumb>
-      <nz-content>
+      <nz-content id="content">
         <router-outlet></router-outlet>
       </nz-content>
       <nz-footer>Berexia 2019/2020 © copyright</nz-footer>
     </nz-layout>
   </nz-layout>
+
 </nz-layout>
+ <ng-template #zeroTrigger>
+   <i nz-icon nzType="menu-fold" nzTheme="outline"></i>
+ </ng-template>

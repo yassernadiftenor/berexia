@@ -16,7 +16,7 @@ export class AppComponent {
   connected: boolean;
   username = this.utilisateurServiceService.username;
   function = this.utilisateurServiceService.function;
-
+  isCollapsed = true;
   constructor(private store: Store<any>, private  utilisateurServiceService: UtilisateurServiceService, private route: Router) {
   }
 

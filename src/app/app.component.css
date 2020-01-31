@@ -22,14 +22,14 @@
 }
 
 .sider-menu {
-  margin-left: -8%;
+
   border-right: 0;
   z-index: 1;
   top: 0;
   left: 0;
   overflow-x: hidden;
   padding-top: 0px;
-
+  height: 100%;
 
 }
 .inner-layout.ant-layout{
@@ -38,6 +38,7 @@
   padding-right: 1px;
   padding-inline-end: 0px;
   padding-bottom: 1px;
+  margin-left: 61PX;
 }
 .inner-layout {
   padding: 0 24px 24px;
@@ -59,6 +60,7 @@ nz-footer {
   bottom: 0;
   width: 100% ;
   background: white;
+  margin-left: 61px;
 }
 
 nz-header{
@@ -68,7 +70,7 @@ nz-header{
   background-color: darkgray;
 }
 nz-sider{
-  margin-top: 32px;
+  margin-top: 0px;
 }
 body{
 
@@ -89,4 +91,11 @@ img{
 .ant-avatar-lg{
   margin-left: 82%;
   margin-top: 32px;
+}
+
+.nz-content[_ngcontent-blg-c1]{
+  margin-top: 13px;
+}
+#content{
+  margin-top: 13px;
 }
