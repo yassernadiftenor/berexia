@@ -38,7 +38,7 @@
   padding-right: 1px;
   padding-inline-end: 0px;
   padding-bottom: 1px;
-  margin-left: 61PX;
+  margin-left: 68PX;
 }
 .inner-layout {
   padding: 0 24px 24px;
@@ -60,7 +60,7 @@ nz-footer {
   bottom: 0;
   width: 100% ;
   background: white;
-  margin-left: 61px;
+  margin-left: 0px;
 }
 
 nz-header{
@@ -89,7 +89,7 @@ img{
   padding-left: 8px;
 }
 .ant-avatar-lg{
-  margin-left: 82%;
+  margin-left: 79%;
   margin-top: 32px;
 }
 
@@ -98,4 +98,10 @@ img{
 }
 #content{
   margin-top: 13px;
+}
+.language{
+
+  /*float: right;*/
+  margin-left: 70px;
+  position: fixed;
 }

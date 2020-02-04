@@ -1,0 +1,16 @@
+{
+  "NAVBAR": {
+    "LOGOUT": "log out",
+    "LOGIN": "log in"
+  },
+  "CONTENT" : {
+    "ADDDNEWDEPART": "Add new departement",
+    "ADDDNEWEMPLOYEE": "Add new employee",
+    "ADDDNEWUSER": "Add new employee",
+    "EXPORT": "Export to Excel",
+    "UPDATE": "Update",
+    "DELETE": "Delete",
+    "MOREDETAILS": "More details"
+
+  }
+}

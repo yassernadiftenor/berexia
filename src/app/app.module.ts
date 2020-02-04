@@ -8,7 +8,7 @@ import {TableModule} from 'primeng/table';
 import {PanelModule} from 'primeng/panel';
 import {ButtonModule} from 'primeng/button';
 import {RadioButtonModule} from 'primeng/radiobutton';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {NgZorroAntdModule, NZ_I18N, en_US} from 'ng-zorro-antd';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -27,6 +27,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
  const routes: Routes = [
    { path: '', pathMatch: 'full', redirectTo: 'home' } ,
    { path: 'home', component : HomeComponent},
@@ -41,6 +43,9 @@ import { UtilisateurComponent } from './components/utilisateur/utilisateur.compo
       { path: '', component : LoginComponent},
     ]},
 ]
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +72,13 @@ import { UtilisateurComponent } from './components/utilisateur/utilisateur.compo
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({maxAge: 25}),
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   providers: [{provide: NZ_I18N, useValue: en_US},[AuthGuardService]],
   bootstrap: [AppComponent]

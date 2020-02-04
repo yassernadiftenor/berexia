@@ -6,9 +6,9 @@
     </div>
 
     <a class="login-icon" (click)="login()" *ngIf="conect()">
-      <i nz-icon nzType="login" nzTheme="outline"></i>Log In </a>
+      <i nz-icon nzType="login" nzTheme="outline"></i>{{ 'NAVBAR.LOGIN' | translate }}</a>
     <a class="login-icon" (click)="disconnect()" *ngIf="connected">
-      <i nz-icon nzType="login" nzTheme="outline"></i>Log out
+      <i nz-icon nzType="login" nzTheme="outline"></i>{{ 'NAVBAR.LOGOUT' | translate }}
     </a><nz-avatar
     *ngIf="connected"
     [ngStyle]="{ 'background-color': '#f56a00' }"
@@ -22,9 +22,9 @@
     <nz-sider nzCollapsible nzTheme="light" *ngIf="connected"
               [(nzCollapsed)]="isCollapsed"
               [nzBreakpoint]="'lg'"
-              [nzCollapsedWidth]="10"
+              [nzCollapsedWidth]="35"
               [nzZeroTrigger]="zeroTrigger">
-      <ul nz-menu nzMode="inline" class="sider-menu" nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ul nz-menu nzMode="inline" class="sider-menu" nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement"  [routerLink]="'departement'">
 
         </li>
@@ -42,7 +42,13 @@
       <nz-content id="content">
         <router-outlet></router-outlet>
       </nz-content>
-      <nz-footer>Berexia 2019/2020 © copyright</nz-footer>
+      <nz-footer>Berexia 2019/2020 © copyright
+        <span class ="language">
+          <span (click)="changeLanguage('fr')" style="cursor: pointer;text-decoration: underline">FR |</span>
+          <span (click)="changeLanguage('en')" style="cursor: pointer;text-decoration: underline"> EN</span>
+        </span>
+      </nz-footer>
+
     </nz-layout>
   </nz-layout>
 

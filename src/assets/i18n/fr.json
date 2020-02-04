@@ -1,0 +1,16 @@
+{
+  "NAVBAR": {
+    "LOGOUT": "Déconnecter",
+    "LOGIN": "Se Connecter"
+  },
+  "CONTENT" : {
+    "ADDDNEWDEPART": "Ajouter un nouveau département",
+    "ADDDNEWEMPLOYEE": "Ajouter un nouvel employé",
+    "ADDDNEWUSER": "Ajouter un nouvel utilisateur",
+    "EXPORT": "Exporter vers Excel",
+    "UPDATE": "Modifier",
+    "DELETE": "Supprimer",
+    "MOREDETAILS": "Plus de détails"
+
+  }
+}

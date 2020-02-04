@@ -1,6 +1,6 @@
 <h3 class="first">Employees</h3>
-<button nz-button [nzType]="'primary'" (click)="showModal()" *ngIf="Access()"><span><i nz-icon nzType="plus" nzTheme="outline"></i>Add new Employe</span></button>
-<button nz-button [nzType]="'primary'" (click)="exportAsXLSX()"><i nz-icon nzType="file-excel" nzTheme="outline"></i>Export to Excel</button>
+<button nz-button [nzType]="'primary'" (click)="showModal()" *ngIf="Access()"><span><i nz-icon nzType="plus" nzTheme="outline"></i>{{ 'CONTENT.ADDDNEWEMPLOYEE' | translate }}</span></button>
+<button nz-button [nzType]="'primary'" (click)="exportAsXLSX()"><i nz-icon nzType="file-excel" nzTheme="outline"></i>{{ 'CONTENT.EXPORT' | translate }}</button>
 <nz-modal [(nzVisible)]="deptVisible" nzTitle="Add new departement" [nzFooter]="addNewEmployeDept"(nzOnCancel)="handleCancel1()">
   <form nz-form [formGroup]="formular1">
     <p>Nom Departement :</p>
@@ -55,7 +55,7 @@
 <ng-template #suffixButton>
 
 </ng-template>
-<p-table [columns]="cols" [value]="employe">
+<p-table [columns]="cols" [value]="employe" [paginator]="true" [rows]="9">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns">
@@ -76,7 +76,7 @@
         {{rowData['departement'].idDepart}}
       </td>
       <td *ngIf="Access()">
-        <button nz-button nzType="primary" *ngIf="Access()" (click)="update(rowData)"><i nz-icon nzType="edit" nzTheme="outline"></i>Update</button>
+        <button nz-button nzType="primary" *ngIf="Access()" (click)="update(rowData)"><i nz-icon nzType="edit" nzTheme="outline"></i>{{ 'CONTENT.UPDATE' | translate }}</button>
       </td>
       <td *ngIf="Access()">
         <button nz-button nzType="primary" nz-popconfirm
@@ -85,7 +85,7 @@
                 (nzOnCancel)="handleCancel()"
                 *ngIf="Access()"
                 nzPopconfirmPlacement="bottomLeft"
-                nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>Delete</button>
+                nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>{{ 'CONTENT.DELETE' | translate }}</button>
       </td>
     </tr>
   </ng-template>

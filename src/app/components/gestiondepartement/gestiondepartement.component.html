@@ -4,8 +4,8 @@
     <div class="ant-back-top-inner">UP</div>
   </ng-template>
 </nz-back-top>
-<button nz-button [nzType]="'primary'" (click)="showModal()" *ngIf="Access()"><span><i nz-icon nzType="plus" nzTheme="outline"></i>Add new departement</span></button>
-<button nz-button [nzType]="'primary'" (click)="exportAsXLSX()"><i nz-icon nzType="file-excel" nzTheme="outline"></i>Export to Excel</button>
+<button nz-button [nzType]="'primary'" (click)="showModal()" *ngIf="Access()"><span><i nz-icon nzType="plus" nzTheme="outline"></i>{{ 'CONTENT.ADDDNEWDEPART' | translate }}</span></button>
+<button nz-button [nzType]="'primary'" (click)="exportAsXLSX()"><i nz-icon nzType="file-excel" nzTheme="outline"></i>{{ 'CONTENT.EXPORT' | translate }}</button>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Add new departement" [nzFooter]="addNewDepartFooter" (nzOnCancel)="handleCancel()">
   <form nz-form [formGroup]="formular">
     <p>Nom Departement :</p>
@@ -29,7 +29,7 @@
 </nz-input-group>
 <ng-template #suffixButton>
 </ng-template>
-<p-table [columns]="cols" [value]="departement">
+<p-table [columns]="cols" [value]="departement" [paginator]="true" [rows]="9">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns">
@@ -43,7 +43,7 @@
         {{rowData[col?.field]}}
       </td>
       <td *ngIf="Access()">
-        <button nz-button nzType="primary" (click)="update(rowData)" *ngIf="Access()"><i nz-icon nzType="edit" nzTheme="outline"></i>Update</button>
+        <button nz-button nzType="primary" (click)="update(rowData)" *ngIf="Access()"><i nz-icon nzType="edit" nzTheme="outline"></i>{{ 'CONTENT.UPDATE' | translate }}</button>
 
       </td>
       <td *ngIf="Access()"> <button nz-button nzType="primary"nz-button nzType="primary" nz-popconfirm
@@ -52,9 +52,9 @@
                    (nzOnCancel)="handleCancel()"
                                     *ngIf="Access()"
                    nzPopconfirmPlacement="bottomLeft"
-                   nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>Delete</button></td>
+                   nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>{{ 'CONTENT.DELETE' | translate }}</button></td>
       <td>
-        <button nz-button nzType="primary" (click)="moreDetail(rowData.idDepart)"><i nz-icon nzType="unordered-list" nzTheme="outline"></i>More details</button>
+        <button nz-button nzType="primary" (click)="moreDetail(rowData.idDepart)"><i nz-icon nzType="unordered-list" nzTheme="outline"></i>{{ 'CONTENT.MOREDETAILS' | translate }}</button>
 
       </td>
     </tr>

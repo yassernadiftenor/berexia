@@ -3,7 +3,7 @@ import {UtilisateurServiceService} from 'src/app/services/utilisateur-service.se
 import {Router} from "@angular/router";
 import {selectAllEmployee1} from "./state/reducers";
 import {Store} from "@ngrx/store";
-
+import {TranslateService} from"@ngx-translate/core"
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,9 +17,18 @@ export class AppComponent {
   username = this.utilisateurServiceService.username;
   function = this.utilisateurServiceService.function;
   isCollapsed = true;
-  constructor(private store: Store<any>, private  utilisateurServiceService: UtilisateurServiceService, private route: Router) {
+  constructor(private translate :TranslateService,private store: Store<any>, private  utilisateurServiceService: UtilisateurServiceService, private route: Router) {
+    translate.addLangs(['en', 'fr']);
   }
+  ngOnInit(): void {
+    if (localStorage.getItem('language')) {
+      this.translate.use(localStorage.getItem('language'));
+    } else {
+      localStorage.setItem('language', 'en');
+      this.translate.use('en');
 
+    }
+  }
   Access(): boolean {
     this.store.select(selectAllEmployee1).subscribe(user => {
       if (user.function.toUpperCase() === 'ADMIN') {
@@ -56,5 +65,12 @@ export class AppComponent {
     this.connected = false;
     this.route.navigate(['/Login']);
   }
+  changeLanguage(lang) {
+    if (lang === 'fr') {
+      this.translate.use('fr'); localStorage.setItem('language', 'fr');
+    } else {
+      this.translate.use('en'); localStorage.setItem('language', 'en');
 
+    }
+  }
 }
