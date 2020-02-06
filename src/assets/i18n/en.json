@@ -6,7 +6,7 @@
   "CONTENT" : {
     "ADDDNEWDEPART": "Add new departement",
     "ADDDNEWEMPLOYEE": "Add new employee",
-    "ADDDNEWUSER": "Add new employee",
+    "ADDDNEWUSER": "Add new user",
     "EXPORT": "Export to Excel",
     "UPDATE": "Update",
     "DELETE": "Delete",

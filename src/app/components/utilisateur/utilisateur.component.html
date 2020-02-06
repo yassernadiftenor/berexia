@@ -1,5 +1,5 @@
 <h3 class="first">Utilisateur Information</h3>
-<button nz-button [nzType]="'primary'" (click)="showModal()" ><span><i nz-icon nzType="plus" nzTheme="outline"></i>Add new User</span></button>
+<button nz-button [nzType]="'primary'" (click)="showModal()" ><span><i nz-icon nzType="plus" nzTheme="outline"></i>{{ 'CONTENT.ADDDNEWUSER' | translate }}</span></button>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Add new User" [nzFooter]="addNewUser"  (nzOnCancel)="handleCancel()">
   <form nz-form [formGroup]="formular"  >
     <p>Nom :</p>
@@ -42,7 +42,7 @@
         {{rowData[col?.field]}}
       </td>
       <td >
-        <button nz-button nzType="primary" (click)="update(rowData)"><i nz-icon nzType="edit" nzTheme="outline"></i>Update</button>
+        <button nz-button nzType="primary" (click)="update(rowData)"><i nz-icon nzType="edit" nzTheme="outline"></i>{{ 'CONTENT.UPDATE' | translate }}</button>
       </td>
       <td >
         <button nz-button nzType="primary" nz-popconfirm
@@ -51,7 +51,7 @@
                 (nzOnCancel)="handleCancel()"
 
                 nzPopconfirmPlacement="bottomLeft"
-                nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>Delete</button>
+                nz-button ><i nz-icon nzType="delete" nzTheme="outline"></i>{{ 'CONTENT.DELETE' | translate }}</button>
       </td>
     </tr>
   </ng-template>

@@ -11,7 +11,7 @@
   padding-right: 2%;
   color: white;
   float: right;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .header-menu {
@@ -66,8 +66,9 @@ nz-footer {
 nz-header{
   padding-left: 0%;
   padding-right: 0%;
-  height: 100px;
-  background-color: darkgray;
+  height: 78px;
+  background-color: black;
+
 }
 nz-sider{
   margin-top: 0px;
@@ -81,16 +82,17 @@ nz-layout{
   background: white;
 }
 img{
-  height: 89px;
-  margin-left: 12px;
-  margin-top: 7px;
+  height: 64px;
+  margin-left: 3px;
+  margin-top: 0px;
+  padding: 0px;
 }
 .ant-menu-submenu-title{
   padding-left: 8px;
 }
 .ant-avatar-lg{
   margin-left: 79%;
-  margin-top: 32px;
+  margin-top: 6px;
 }
 
 .nz-content[_ngcontent-blg-c1]{
