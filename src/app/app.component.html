@@ -1,5 +1,6 @@
 
  <nz-layout>
+
   <nz-header  >
     <div class="logo" >
       <a (click)="home()"><img src="http://www.berexia.com/wp-content/uploads/2017/11/logo-berexia-cabinet-conseil.png" ></a>
@@ -24,7 +25,7 @@
               [nzBreakpoint]="'lg'"
               [nzCollapsedWidth]="35"
               [nzZeroTrigger]="zeroTrigger">
-      <ul nz-menu nzMode="inline" class="sider-menu" nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ul  nz-menu nzMode="inline" class="sider-menu" nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement"  [routerLink]="'departement'">
 
         </li>

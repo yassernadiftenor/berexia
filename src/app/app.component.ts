@@ -2,7 +2,11 @@ import {Component} from '@angular/core';
 import {UtilisateurServiceService} from 'src/app/services/utilisateur-service.service';
 import {Router} from "@angular/router";
 import {selectAllEmployee1} from "./state/reducers";
+import {connectedStatus} from "./state/reducers";
+
 import {Store} from "@ngrx/store";
+import * as fromState from "src/app/state";
+
 import {TranslateService} from"@ngx-translate/core"
 @Component({
   selector: 'app-root',
@@ -50,7 +54,7 @@ export class AppComponent {
 
   conect() {
     this.connected = this.utilisateurServiceService.connected;
-    return !this.utilisateurServiceService.connected;
+    return !this.connected;
 
   }
 
@@ -58,12 +62,17 @@ export class AppComponent {
     return this.utilisateurServiceService.connected;
 
   }
-
+var:boolean;
   disconnect() {
-    localStorage.removeItem('username');
-    this.utilisateurServiceService.connected = false;
-    this.connected = false;
-    this.route.navigate(['/Login']);
+    this.store.dispatch(new fromState.LogoutUtilisateur());
+    this.store.select(connectedStatus).subscribe(user=>{
+      this.var=user;
+    })
+    if(!this.var){
+      localStorage.removeItem('username');
+      this.utilisateurServiceService.connected = false;
+      this.route.navigate(['/Login']);
+    }
   }
   changeLanguage(lang) {
     if (lang === 'fr') {

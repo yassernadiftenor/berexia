@@ -78,4 +78,10 @@ export class UtilisateurEffect {
   @Effect({ dispatch: false })
   LogInFailure: Observable<any> = this.actions$.pipe(
     ofType( UtilisateurActions.UtilisateurActionType.LOGIN_UTILISATEUR_FAIL));
+
+  @Effect({ dispatch: false })
+  Logout: Observable<any> = this.actions$.pipe(
+    ofType( UtilisateurActions.UtilisateurActionType.LOGOUT_UTILISATEUR));
+
+
 }

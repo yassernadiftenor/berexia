@@ -2,9 +2,7 @@ import * as UtilisateurActions from "../actions/utilisateur.actions"
 import {UtilisateurActionType} from "../actions/utilisateur.actions"
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 import {User} from "src/app/models/user"
- import * as _ from "lodash";
-import {Departement} from "../../models/departement.module";
-import {DepartementState} from "./departement.reducer";
+import * as _ from "lodash";
 
 export interface utilisateurState extends EntityState<any>{
   user:User
@@ -41,6 +39,7 @@ export function utilisateurReducer(
     case UtilisateurActionType.LOGIN_UTILISATEUR:{
       return {
         ...state,
+        connected:true,
         entities:action.payload,
         user:action.payload,
         error:"",
@@ -49,6 +48,7 @@ export function utilisateurReducer(
     case UtilisateurActionType.LOGIN_UTILISATEUR_SUCESS:{
       return {
         ...state,
+        connected:true,
         user:action.payload
       }
         // return _.merge({}, state, { entities:action.payload,user:action.payload});
@@ -56,6 +56,12 @@ export function utilisateurReducer(
     case UtilisateurActionType.LOGIN_UTILISATEUR_FAIL:{
       return _.merge({}, state, { connected:false});
 
+    }
+    case UtilisateurActionType.LOGOUT_UTILISATEUR:{
+      return {
+        ...state,
+        connected:false,
+      };
     }
     default :{
       return state;

@@ -33,3 +33,4 @@ export const getCurrentDepartments = createSelector(
 );
 export const selectAllEmployee = (state: EmployeeState) => Object.assign(state).employeeManag.AllEmployee;
 export const selectAllEmployee1 = (state: utilisateurState) => Object.assign(state).utilisateurManag.user;
+export const connectedStatus = (state: utilisateurState) => Object.assign(state).utilisateurManag.connected;

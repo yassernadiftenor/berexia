@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
     //console.log("the user object"+this.userService.userIn);
     console.log("loginstoreTest login : "+this.userService.username);
   }
-  data :any;
+  data :User;
   login(){
 
     const payload = {
@@ -107,21 +107,21 @@ export class LoginComponent implements OnInit {
       password: this.formular.get('pwd').value
     };
     this.store.dispatch(new fromState.LoginUtilisateur(payload));
-    this.store.select(selectAllEmployee1).subscribe(data=>
-      this.data=data);
+    this.store.select(selectAllEmployee1).subscribe(data=> {
+        this.data = data;
+        if (this.data) {
+          console.log(this.data);
+          localStorage.setItem('username', this.data.login);
+          this.userService.connected = true;
+          this.userService.username = this.loginn;
+          this.router.navigate(['/departement']);
+        } else {
+          this.router.navigate(['/Login']);
+        }
+      }
+    );
     console.log("this is the return of "+this.data);
-    if(this.data){
-      console.log(this.data);
-      localStorage.setItem('username',payload.login);
-      console.log("this is the return", this.data);
-      this.userService.connected=true;
-      this.userService.username=this.loginn;
-      this.router.navigate(['/departement']);
-    }else {
-      this.userService.connected=false;
-      this.bool =false;
-      this.router.navigate(['/Login']);
-    }
+
   }
 
     // )
