@@ -2,7 +2,7 @@
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your username!">
       <nz-input-group nzPrefixIcon="user">
-        <input type="text" nz-input  placeholder="Username" [formControlName]="'login'" />
+        <input type="text" nz-input  placeholder="{{ 'CONTENT.USERNAME' | translate }}" [formControlName]="'login'" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>

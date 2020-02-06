@@ -24,10 +24,11 @@
     <button nz-button nzType="default" (click)="handleCancel1()">Cancel</button>
   </ng-template>
 </nz-modal>
-<nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-  <input type="text" nz-input placeholder="Look for departement by name" (input)="search()" [(ngModel)]="searchword"/>
+<nz-input-group nzSearch nzSize="large" >
+  <input nz-input placeholder="Look for departement by name" (input)="search()" [(ngModel)]="searchword"/>
 </nz-input-group>
 <ng-template #suffixButton>
+<!--  <span>ok</span>--><i nz-icon nzType="search" nzTheme="outline"></i>
 </ng-template>
 <p-table [columns]="cols" [value]="departement" [paginator]="true" [rows]="9">
   <ng-template pTemplate="header" let-columns>

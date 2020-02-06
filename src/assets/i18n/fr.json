@@ -10,7 +10,7 @@
     "EXPORT": "Exporter vers Excel",
     "UPDATE": "Modifier",
     "DELETE": "Supprimer",
-    "MOREDETAILS": "Plus de détails"
-
+    "MOREDETAILS": "Plus de détails",
+     "USERNAME": "Nom d'Utilisateur"
   }
 }

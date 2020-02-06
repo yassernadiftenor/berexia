@@ -10,7 +10,9 @@
     "EXPORT": "Export to Excel",
     "UPDATE": "Update",
     "DELETE": "Delete",
-    "MOREDETAILS": "More details"
+    "MOREDETAILS": "More details",
+    "USERNAME": "User Name",
+    "PASSWORD": "Password"
 
   }
 }
