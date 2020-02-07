@@ -9,7 +9,7 @@
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your Password!">
       <nz-input-group nzPrefixIcon="lock">
-        <input type="password" nz-input  placeholder="Password" [formControlName]="'pwd'" />
+        <input type="password" nz-input  placeholder="{{ 'CONTENT.PASSWORD' | translate }}" [formControlName]="'pwd'" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>

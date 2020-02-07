@@ -1,0 +1,42 @@
+<nz-modal [(nzVisible)]="deptVisible" nzTitle="Add new departement" [nzFooter]="addNewEmployeDept"(nzOnCancel)="handleCancel1()">
+  <form nz-form [formGroup]="formular1">
+    <p>Nom Departement :</p>
+    <input nz-input placeholder="Name departement" [formControlName]="'nomDepart'" nzSize="default"
+           [ngModel]="selectedDep1?.nomDepart"/>
+    <p>Capacite :</p>
+    <nz-input-number [formControlName]="'capacite'"
+                     [ngModel]="selectedDep1?.capacite" [nzMin]="1" [nzMax]="1000000" [nzStep]="1"></nz-input-number>
+
+
+  </form>
+  <ng-template #addNewEmployeDept>
+    <button nz-button nzType="default" (click)="handleCancel1()">Cancel</button>
+    <button nz-button nzType="primary" (click)="handleOk1()" [disabled]="!formular1.valid">valider</button>
+  </ng-template>
+</nz-modal>
+
+
+<h1>{{"CONTENT.ADDDNEWEMPLOYEE" | translate}}</h1>
+  <form nz-form [formGroup]="formular">
+    <p>Nom Employe :</p>
+    <input nz-input placeholder="Last Name Employe" [formControlName]="'nomEmploye'" nzSize="default"
+           [ngModel]="selectedDep?.nomEmploye"/>
+    <p>Prenom Employe :</p>
+    <input nz-input placeholder="first Name Employe" [formControlName]="'prenomEmploye'" nzSize="default"
+           [ngModel]="selectedDep?.prenomEmploye"/>
+    <p>Ville Employe :</p>
+    <input nz-input placeholder="City Employe" [formControlName]="'ville'" nzSize="default"
+           [ngModel]="selectedDep?.ville"/>
+    <p>Departement Employe :</p>
+    <nz-select [(ngModel)]="listDepart" nzPlaceHolder="Departement name" [formControlName]="'departement'">
+      <nz-option *ngFor="let option of listOfDepartement" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+    </nz-select>
+    <p>Ne voyez-vous pas votre département ?</p>
+    <button nz-button nzType="primary" (click)="showDepartModal()" [disabled]="buttonInvisible">Ajouter un departement</button>
+
+    <form>
+      <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+      <button nz-button nzType="primary" (click)="handleOk()">valider</button>
+    </form>
+  </form>
+

@@ -5,7 +5,8 @@ import {Employee} from "../../models/employee.module";
 import * as _ from "lodash";
 
 export interface EmployeeState extends EntityState<Employee>{
-  selectedEmployeId: number | null;
+
+
   AllEmployee:any;
   loaded:boolean;
   loading:boolean;
@@ -18,7 +19,7 @@ export const employeeAdapter: EntityAdapter<Employee> = createEntityAdapter<Empl
 export const defaultEmployee: EmployeeState = {
   ids: [],
   entities: {},
-  selectedEmployeId: null,
+
   AllEmployee:null,
   loaded:false,
   loading:false,
@@ -54,9 +55,9 @@ export function EmployeeReducer(
         loading:false
       };
     }
-    // case DepartementActionType.CREATE_DEPARTEMENT: {
-    //   return _.merge(({}))
-    // }
+    case EmployeeActionType.CREATE_EMPLOYEE_SUCESS: {
+     return employeeAdapter.addOne(action.payload,state);
+    }
     case EmployeeActionType.CREATE_EMPLOYEE_FAIL:{
       return {
         ...state,

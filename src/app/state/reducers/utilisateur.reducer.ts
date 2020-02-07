@@ -58,10 +58,8 @@ export function utilisateurReducer(
 
     }
     case UtilisateurActionType.LOGOUT_UTILISATEUR:{
-      return {
-        ...state,
-        connected:false,
-      };
+      console.log(_.merge(state,{connected:false}))
+      return _.merge(state,{connected:false})
     }
     default :{
       return state;

@@ -11,6 +11,10 @@
     "UPDATE": "Modifier",
     "DELETE": "Supprimer",
     "MOREDETAILS": "Plus de détails",
-     "USERNAME": "Nom d'Utilisateur"
+     "USERNAME": "Nom d'Utilisateur",
+     "PASSWORD": "mots de pass",
+    "DEPARTEMENTLIST": "Liste des Departements",
+    "EMPLOYEELIST": "Liste des  Employees",
+    "USERLIST": "Liste des Utilisateurs"
   }
 }

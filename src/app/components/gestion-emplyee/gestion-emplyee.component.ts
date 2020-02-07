@@ -5,6 +5,9 @@ import {DepartementServiceService} from "../../services/departement-service.serv
 import {ExelService} from "../../services/exel.service"
 import {first} from "rxjs/operators";
 import {UtilisateurServiceService} from "../../services/utilisateur-service.service";
+import {Store} from "@ngrx/store";
+import {selectAllDepartments, selectAllEmployee} from "../../state/reducers";
+import * as fromState from "../../state";
 
 @Component({
   selector: 'app-gestion-emplyee',
@@ -13,8 +16,8 @@ import {UtilisateurServiceService} from "../../services/utilisateur-service.serv
 })
 export class GestionEmplyeeComponent implements OnInit {
 
-  constructor(private excelService:ExelService,private employeService: EmployeServiceService, private fb: FormBuilder, private fb1 :FormBuilder,private departementService: DepartementServiceService,private userService: UtilisateurServiceService) {
-
+  constructor(private store:Store<any>,private excelService:ExelService,private employeService: EmployeServiceService, private fb: FormBuilder, private fb1 :FormBuilder,private departementService: DepartementServiceService,private userService: UtilisateurServiceService) {
+    this.store.select(selectAllEmployee).subscribe(data => this.employe=data);
     this.selectRemp();
   }
 
@@ -39,6 +42,7 @@ export class GestionEmplyeeComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.getData();
     this.formular = this.fb.group({
       nomEmploye: ['', Validators.required],
       prenomEmploye: ['', Validators.required],
@@ -50,7 +54,7 @@ export class GestionEmplyeeComponent implements OnInit {
       capacite: [0, Validators.required]
     })
     console.log(this.formular.value)
-    this.getData();
+
     this.cols = [
       {field: 'idEmploye', header: 'id Employe'},
       {field: 'nomEmploye', header: 'nom Employe'},
@@ -65,9 +69,11 @@ export class GestionEmplyeeComponent implements OnInit {
   }
 
   getData() {
-    this.employeService.getEmploye().subscribe((data: any[]) => {
-      this.employe = Array.from(Object.keys(data), k => data[k]);
-    });
+    this.store.dispatch(new fromState.LoadEmployee());
+    this.store.select(selectAllEmployee).subscribe(data => this.employe=Object.values(data));
+    // this.employeService.getEmploye().subscribe((data: any[]) => {
+    //   this.employe = Array.from(Object.keys(data), k => data[k]);
+    // });
   }
   handleOk1(): void {
     if (!this.selectedDep1) {

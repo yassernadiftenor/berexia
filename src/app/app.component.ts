@@ -8,6 +8,7 @@ import {Store} from "@ngrx/store";
 import * as fromState from "src/app/state";
 
 import {TranslateService} from"@ngx-translate/core"
+import {ExelService} from "./services/exel.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -64,6 +65,7 @@ export class AppComponent {
   }
 var:boolean;
   disconnect() {
+    console.log("here")
     this.store.dispatch(new fromState.LogoutUtilisateur());
     this.store.select(connectedStatus).subscribe(user=>{
       this.var=user;
@@ -81,5 +83,23 @@ var:boolean;
       this.translate.use('en'); localStorage.setItem('language', 'en');
 
     }
+  }
+  MenuOpen1:boolean=false;
+  MenuOpen2:boolean=false;
+  MenuOpen3:boolean=false;
+  nzMenuOpen1(){
+    this.MenuOpen1=true;
+    this.MenuOpen2=false;
+    this.MenuOpen3=false;
+  }
+  nzMenuOpen2(){
+    this.MenuOpen1=false;
+    this.MenuOpen2=true;
+    this.MenuOpen3=false;
+  }
+  nzMenuOpen3(){
+    this.MenuOpen1=false;
+    this.MenuOpen2=false;
+    this.MenuOpen3=true;
   }
 }

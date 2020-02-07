@@ -7,8 +7,10 @@
   <input nz-input placeholder="first Name Employe" [formControlName]="'prenom'" nzSize="default"
          [ngModel]="selectedDep?.prenomEmploye"/>
   <p>Function :</p>
-  <input nz-input placeholder="function" [formControlName]="'function'" nzSize="default"
-         [ngModel]="selectedDep?.ville"/>
+  <nz-select nzPlaceHolder="function" [formControlName]="'function'" [ngModel]="selectedDep?.ville">
+    <nz-option [nzValue]="'admin'" [nzLabel]="'admin'"></nz-option>
+    <nz-option [nzValue]="'normal user'" [nzLabel]="'normal user'"></nz-option>
+  </nz-select>
   <p>Login :</p>
   <input nz-input placeholder="login" [formControlName]="'login'" nzSize="default"
          [ngModel]="selectedDep?.ville"/>

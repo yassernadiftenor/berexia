@@ -26,14 +26,29 @@
               [nzCollapsedWidth]="35"
               [nzZeroTrigger]="zeroTrigger">
       <ul  nz-menu nzMode="inline" class="sider-menu" nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu nzOpen nzIcon="home" nzTitle="list departement"  [routerLink]="'departement'">
+        <li nz-submenu [nzOpen]="MenuOpen1" nzIcon="home" nzTitle="{{ 'CONTENT.DEPARTEMENTLIST' | translate }}" (click)="nzMenuOpen1()">
+          <ul>
+            <li nz-menu-item [routerLink]="'addDept'">{{ 'CONTENT.ADDDNEWDEPART' | translate }}</li>
+            <li nz-menu-item [routerLink]="'departement'"> {{ 'CONTENT.DEPARTEMENTLIST' | translate }}</li>
+            
+          </ul>
 
         </li>
 
-        <li nz-submenu nzTitle="list employee" nzIcon="idcard"  [routerLink]="['employee']">
+        <li nz-submenu [nzOpen]="MenuOpen2" nzTitle="{{ 'CONTENT.EMPLOYEELIST' | translate }}" nzIcon="idcard" (click)="nzMenuOpen2()"  >
+          <ul>
+            <li nz-menu-item [routerLink]="['addEmp']">{{ 'CONTENT.ADDDNEWEMPLOYEE' | translate }}</li>
+            <li nz-menu-item [routerLink]="['employee']"> {{ 'CONTENT.EMPLOYEELIST' | translate }}</li>
+
+          </ul>
         </li>
 
-        <li nz-submenu nzTitle="list utilisateur" *ngIf="Access()"  nzIcon="user" [routerLink]="['UtilisateurList']">
+        <li nz-submenu [nzOpen]="MenuOpen3" nzTitle="{{ 'CONTENT.USERLIST' | translate }}" *ngIf="Access()"  nzIcon="user" (click)="nzMenuOpen3()">
+          <ul>
+            <li nz-menu-item [routerLink]="['utilisateur']">{{ 'CONTENT.ADDDNEWUSER' | translate }}</li>
+            <li nz-menu-item [routerLink]="['UtilisateurList']"> {{ 'CONTENT.USERLIST' | translate }}</li>
+
+          </ul>
         </li>
       </ul>
     </nz-sider>

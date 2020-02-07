@@ -1,0 +1,14 @@
+<h1>{{"CONTENT.ADDDNEWDEPART" | translate}}</h1>
+<form nz-form [formGroup]="formular">
+  <p>Nom Departement :</p>
+  <input nz-input placeholder="Name departement" [formControlName]="'nomDepart'" nzSize="default"
+         [ngModel]="selectedDep?.nomDepart"/>
+  <p>Capacite :</p>
+  <nz-input-number [formControlName]="'capacite'"
+                   [ngModel]="selectedDep?.capacite" [nzMin]="1" [nzMax]="1000000" [nzStep]="1"></nz-input-number>
+</form>
+  <form>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+    <button nz-button nzType="primary" (click)="handleOk()" [disabled]="!formular.valid">valider</button>
+  </form>
+

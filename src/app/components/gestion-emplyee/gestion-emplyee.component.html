@@ -64,6 +64,9 @@
       <th>
         idDepart
      </th>
+      <th class="ant-table-action" colspan="2" *ngIf="Access()">
+        Actions
+      </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">

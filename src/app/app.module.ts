@@ -29,11 +29,16 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { AddDepartementsComponent } from './components/add-departements/add-departements.component';
+import { AddEmployeesComponent } from './components/add-employees/add-employees.component';
+
  const routes: Routes = [
    { path: '', pathMatch: 'full', redirectTo: 'home' } ,
    { path: 'home', component : HomeComponent},
    { path: 'employee', component : GestionEmplyeeComponent,canActivate: [AuthGuardService]},
    { path: 'Login', component : LoginComponent},
+   {path:'addDept',component:AddDepartementsComponent},
+   {path :'addEmp',component: AddEmployeesComponent},
    { path: 'departement', component:GestiondepartementComponent,canActivate: [AuthGuardService] },
    { path: 'utilisateur', component:UtilisateurInfoComponent },
    { path: 'UtilisateurList', component:UtilisateurComponent },
@@ -54,7 +59,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     UtilisateurInfoComponent,
     HomeComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    AddDepartementsComponent,
+    AddEmployeesComponent
   ],
   imports: [
     BrowserModule,

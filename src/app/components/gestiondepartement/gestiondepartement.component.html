@@ -24,8 +24,8 @@
     <button nz-button nzType="default" (click)="handleCancel1()">Cancel</button>
   </ng-template>
 </nz-modal>
-<nz-input-group nzSearch nzSize="large" >
-  <input nz-input placeholder="Look for departement by name" (input)="search()" [(ngModel)]="searchword"/>
+<nz-input-group nzSearch nzSize="large"  >
+  <input class="searchbare" nz-input placeholder="Look for departement by name" (input)="search()" [(ngModel)]="searchword"/>
 </nz-input-group>
 <ng-template #suffixButton>
 <!--  <span>ok</span>--><i nz-icon nzType="search" nzTheme="outline"></i>
@@ -35,6 +35,12 @@
     <tr>
       <th *ngFor="let col of columns">
         {{col.header}}
+      </th>
+      <th class="ant-table-action" colspan="3" *ngIf="Access()">
+        Actions
+      </th>
+      <th  *ngIf="!Access()">
+        Actions
       </th>
     </tr>
   </ng-template>

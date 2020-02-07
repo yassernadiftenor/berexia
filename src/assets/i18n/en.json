@@ -10,9 +10,20 @@
     "EXPORT": "Export to Excel",
     "UPDATE": "Update",
     "DELETE": "Delete",
-    "MOREDETAILS": "More details",
+    "MOREDETAILS": "More Details",
     "USERNAME": "User Name",
-    "PASSWORD": "Password"
-
+    "PASSWORD": "Password",
+    "DEPARTEMENTLIST": "Departement List",
+    "EMPLOYEELIST": "Employees List",
+    "USERLIST": "User List"
+  },
+  "EMPLOYEINFO":{
+    "LASTNAME": "Employe Last Name",
+    "FIRSTNAME": "Employe First Name",
+    "City": "Employe City"
+  },
+  "DEPARTEMENTINFO": {
+    "DEPARTEMENTNAME": "Departement Name",
+    "DEPARTEMENTCAPACITY": "Departement Capacity"
   }
 }

@@ -20,5 +20,12 @@
 }
 
 ::ng-deep #content > app-gestiondepartement > nz-input-group > span > input {
-  border-right: 1px solid #d9d9d9;
+  border-right: 2px solid #d9d9d9;
+}
+.ant-table-action{
+  text-align: center;
+}
+.searchbare{
+  border-right: 2px solid #d9d9d9;
+  width: 100%;
 }
