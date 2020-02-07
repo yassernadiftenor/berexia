@@ -36,7 +36,8 @@ export function departementReducer(
     case DepartementActions.DepartementActionType.LOAD_DEPARTEMENTS:{
       return {
         ...state,
-        loading:true
+        loading:true,
+        loaded:false
       };
     }
     case DepartementActionType.LOAD_DEPARTEMENTS_SUCESS:{

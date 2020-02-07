@@ -35,7 +35,7 @@ export class GestionEmplyeeComponent implements OnInit {
   buttonInvisible:boolean=false;
   function=this.userService.function;
   Access(): boolean{
-    if(this.function.toUpperCase()==='ADMIN'){
+    if(this.function ==='admin'){
       return true;
     }else{
       return false;

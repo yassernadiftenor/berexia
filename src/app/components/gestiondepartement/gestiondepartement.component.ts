@@ -65,7 +65,7 @@ export class GestiondepartementComponent implements OnInit {
   searchword: string = '';
   function=this.userService.function;
   Access(): boolean{
-    if(this.function.toUpperCase()==='ADMIN'){
+    if(this.function ==='admin'){
       return true;
     }else{
       return false;

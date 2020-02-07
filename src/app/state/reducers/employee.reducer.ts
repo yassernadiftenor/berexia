@@ -41,12 +41,13 @@ export function EmployeeReducer(
       };
     }
     case EmployeeActionType.LOAD_EMPLOYEE_SUCESS:{
-      return employeeAdapter.addAll(action.payload,{
+      return{
         ...state,
         loading:false,
         loaded:true,
-        AllEmployee:action.payload
-      });
+        ids:_.map(action.payload,e=>e.idEmploye),
+        entities:action.payload
+      };
     }
     case EmployeeActionType.LOAD_EMPLOYEE_FAIL:{
       return {

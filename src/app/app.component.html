@@ -20,17 +20,17 @@
   </nz-header>
   <nz-layout>
 
-    <nz-sider nzCollapsible nzTheme="light" *ngIf="connected"
+    <nz-sider  nzCollapsible nzTheme="light" *ngIf="connected"
               [(nzCollapsed)]="isCollapsed"
               [nzBreakpoint]="'lg'"
               [nzCollapsedWidth]="35"
               [nzZeroTrigger]="zeroTrigger">
-      <ul  nz-menu nzMode="inline" class="sider-menu" nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ul  nz-menu class="sider-menu" nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu [nzOpen]="MenuOpen1" nzIcon="home" nzTitle="{{ 'CONTENT.DEPARTEMENTLIST' | translate }}" (click)="nzMenuOpen1()">
           <ul>
             <li nz-menu-item [routerLink]="'addDept'">{{ 'CONTENT.ADDDNEWDEPART' | translate }}</li>
             <li nz-menu-item [routerLink]="'departement'"> {{ 'CONTENT.DEPARTEMENTLIST' | translate }}</li>
-            
+
           </ul>
 
         </li>
