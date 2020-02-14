@@ -24,14 +24,14 @@ export class UtilisateurServiceService {
   deleteUtilisateur(id: any) {
     return this.http.delete('http://localhost:4200/utilisateurs/delete/'+id);
   }
-   logInUser(login:any ,pwd :any){
+  logInUser(login:any ,pwd :any){
     return this.http.get('http://localhost:4200/utilisateurs/login/'+login+'/'+pwd);
   }
   logInUser1(login:any ,pwd :any){
     return this.http.get('http://localhost:4200/utilisateurs/login1/'+login+'/'+pwd);
   }
   userIn:User;
-  connected:boolean=false;
+  connected:boolean;
   disconnected:boolean=false
   login1() {
     this.connected = true;

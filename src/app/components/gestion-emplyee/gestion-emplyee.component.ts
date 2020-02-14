@@ -6,7 +6,7 @@ import {ExelService} from "../../services/exel.service"
 import {first} from "rxjs/operators";
 import {UtilisateurServiceService} from "../../services/utilisateur-service.service";
 import {Store} from "@ngrx/store";
-import {selectAllDepartments, selectAllEmployee} from "../../state/reducers";
+import {selectAllDepartments, selectAllEmployee, selectAllEmployee1} from "../../state/reducers";
 import * as fromState from "../../state";
 
 @Component({
@@ -33,13 +33,21 @@ export class GestionEmplyeeComponent implements OnInit {
   listOfDepartement = [];
   listDepart ;
   buttonInvisible:boolean=false;
-  function=this.userService.function;
-  Access(): boolean{
-    if(this.function ==='admin'){
-      return true;
-    }else{
-      return false;
-    }
+  bool :boolean;
+  Access(): boolean {
+    this.store.select(selectAllEmployee1).subscribe(user => {
+      if(user!=null) {
+        if (user.function === 'admin') {
+          this.bool = true;
+        } else {
+          this.bool = false;
+        }
+      }
+      else{
+        this.store.dispatch(new fromState.LogoutUtilisateurFail());
+      }
+    });
+    return this.bool;
   }
   ngOnInit() {
     this.getData();
@@ -60,7 +68,6 @@ export class GestionEmplyeeComponent implements OnInit {
       {field: 'nomEmploye', header: 'nom Employe'},
       {field: 'prenomEmploye', header: 'prenom Employe'},
       {field: 'ville', header: 'ville'},
-
     ];
   }
   exportAsXLSX():void {

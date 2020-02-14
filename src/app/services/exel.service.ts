@@ -19,11 +19,13 @@ export class ExelService {
     //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
-
+ mydate:Date;
+  date1:any;
   private saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], {
       type: EXCEL_TYPE
     });
-    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime()+ EXCEL_EXTENSION);
   }
 }

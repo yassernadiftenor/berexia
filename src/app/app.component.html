@@ -8,15 +8,22 @@
 
     <a class="login-icon" (click)="login()" *ngIf="conect()">
       <i nz-icon nzType="login" nzTheme="outline"></i>{{ 'NAVBAR.LOGIN' | translate }}</a>
-    <a class="login-icon" (click)="disconnect()" *ngIf="connected">
-      <i nz-icon nzType="login" nzTheme="outline"></i>{{ 'NAVBAR.LOGOUT' | translate }}
-    </a><nz-avatar
+    <nz-avatar nz-dropdown [nzDropdownMenu]="menu"
     *ngIf="connected"
     [ngStyle]="{ 'background-color': '#f56a00' }"
     [nzText]="utilisateurServiceService.username"
     nzSize="large"
     style="vertical-align: middle;"
   ></nz-avatar>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-item>1st menu item length</li>
+      <li nz-menu-item>View Profile</li>
+      <li nz-menu-item (click)="disconnect()" *ngIf="connected"><a >
+        <i nz-icon nzTheme="outline"></i>
+      </a>{{ 'NAVBAR.LOGOUT' | translate }}</li>
+    </ul>
+    </nz-dropdown-menu>
   </nz-header>
   <nz-layout>
 
@@ -25,7 +32,7 @@
               [nzBreakpoint]="'lg'"
               [nzCollapsedWidth]="35"
               [nzZeroTrigger]="zeroTrigger">
-      <ul  nz-menu class="sider-menu" nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ul  nz-menu class="sider-menu" nzTheme="light" nzMode="inline" >
         <li nz-submenu [nzOpen]="MenuOpen1" nzIcon="home" nzTitle="{{ 'CONTENT.DEPARTEMENTLIST' | translate }}" (click)="nzMenuOpen1()">
           <ul>
             <li nz-menu-item [routerLink]="'addDept'">{{ 'CONTENT.ADDDNEWDEPART' | translate }}</li>

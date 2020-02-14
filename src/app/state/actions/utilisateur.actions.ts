@@ -49,7 +49,7 @@ export class LoginUtilisateurSuccess implements Action {
 export class LoginUtilisateurFail implements Action {
   readonly type = UtilisateurActionType.LOGIN_UTILISATEUR_FAIL;
 
-  constructor(public payload: any) {
+  constructor() {
   }
 }export class LogoutUtilisateur implements Action {
   readonly type = UtilisateurActionType.LOGOUT_UTILISATEUR;
@@ -66,7 +66,7 @@ export class LogoutUtilisateurSuccess implements Action {
 export class LogoutUtilisateurFail implements Action {
   readonly type = UtilisateurActionType.LOGOUT_UTILISATEUR_FAIL;
 
-  constructor(public payload: any) {
+  constructor() {
   }
 }
 export type UserAction =

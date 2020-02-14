@@ -11,6 +11,7 @@ import {Actions, ofType} from "@ngrx/effects";
 import {DepartementActionType} from "src/app/state/actions/departement.actions";
 import {UtilisateurServiceService} from "src/app/services/utilisateur-service.service"
 import {ExelService} from "../../services/exel.service";
+import {selectAllEmployee1} from "src/app/state";
 @Component({
   selector: 'app-gestiondepartement',
   templateUrl: './gestiondepartement.component.html',
@@ -63,13 +64,20 @@ export class GestiondepartementComponent implements OnInit {
   isVisible = false;
   selectedDep: any = null;
   searchword: string = '';
-  function=this.userService.function;
-  Access(): boolean{
-    if(this.function ==='admin'){
-      return true;
-    }else{
-      return false;
-    }
+  bool :boolean;
+  Access(): boolean {
+    this.store.select(selectAllEmployee1).subscribe(user => {
+      if(user!=null) {
+        if (user.function === 'admin') {
+          this.bool = true;
+        } else {
+          this.bool = false;
+        }
+      }else{
+        this.store.dispatch(new fromState.LogoutUtilisateurFail());
+      }
+    });
+    return this.bool;
   }
   showModal(): void {
     this.isVisible = true;

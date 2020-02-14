@@ -13,7 +13,7 @@ import {TranslateService} from "@ngx-translate/core"
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewChecked {
+export class AppComponent  {
 
   MenuOpen1: boolean = false;
   MenuOpen2: boolean = false;
@@ -28,7 +28,15 @@ export class AppComponent implements AfterViewChecked {
   var: boolean;
 
   constructor(private translate: TranslateService, private store: Store<any>, private  utilisateurServiceService: UtilisateurServiceService, private route: Router) {
+    this.route.navigate(['home']);
     translate.addLangs(['en', 'fr']);
+    if (localStorage.getItem('language')) {
+      this.translate.use(localStorage.getItem('language'));
+    } else {
+      localStorage.setItem('language', 'en');
+      this.translate.use('en');
+
+    }
   }
 
   ngOnInit(): void {
@@ -43,30 +51,21 @@ export class AppComponent implements AfterViewChecked {
 
   Access(): boolean {
     this.store.select(selectAllEmployee1).subscribe(user => {
-      if (user.function === 'admin') {
-        this.bool = true;
-      } else {
-        this.bool = false;
-      }
+       this.bool = (user.function === 'admin');
     });
     return this.bool;
   }
 
   login() {
-    this.route.navigate(['/Login']);
+    this.route.navigate(['Login']);
   }
 
-  ngAfterViewChecked(): void {
-
-    console.log(">>>> msg");
-  }
 
   home() {
-    this.route.navigate(['/home']);
+    this.route.navigate(['home']);
   }
 
   conect() {
-    this.connected = false;
     this.store.select(fromState.connectedStatus).subscribe(res=>{
       this.connected=res;
     });
@@ -74,13 +73,8 @@ export class AppComponent implements AfterViewChecked {
 
   }
 
-  checkLogin() {
-    return this.utilisateurServiceService.connected;
-
-  }
-
   disconnect() {
-    console.log("here")
+
     this.store.dispatch(new fromState.LogoutUtilisateur());
     this.store.select(connectedStatus).subscribe(user => {
       this.var = user;

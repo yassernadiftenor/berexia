@@ -30,7 +30,7 @@ export class AddEmployeesComponent implements OnInit {
   listOfDepartement = [];
   listDepart ;
   buttonInvisible:boolean=false;
-  function=this.userService.function;
+
   ngOnInit() {
     this.formular = this.fb.group({
       nomEmploye: ['', Validators.required],
@@ -48,7 +48,6 @@ export class AddEmployeesComponent implements OnInit {
       console.log(this.formular.value);
       console.log('Employe add');
       this.store.dispatch(new employesAction.CreateEmployee(this.formular.value));
-     // this.employeService.addEmploye(this.formular.value);
       this.formular.reset();
     this.route.navigate(['/employee']);
   }
