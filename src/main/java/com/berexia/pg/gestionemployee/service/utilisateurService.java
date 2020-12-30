@@ -1,7 +1,5 @@
 package com.berexia.pg.gestionemployee.service;
 
-import com.berexia.pg.gestionemployee.entity.departement;
-import com.berexia.pg.gestionemployee.entity.employe;
 import com.berexia.pg.gestionemployee.entity.utilisateur;
 import com.berexia.pg.gestionemployee.exception.emptyFields;
 import com.berexia.pg.gestionemployee.exception.notFoundException;
@@ -28,7 +26,7 @@ public class utilisateurService {
         if(utili.getPrenom()==null && utili.getPrenom()=="") {
             throw new emptyFields("le prenom est null !!!!!");
         }else
-        if(utili.getLogin()==null && utili.getLogin()=="") {
+        if(utili.getLogin()==null && utili.getLogin().equals("")) {
             throw new emptyFields("le login est null !!!!!");
         }else
         if(utili.getPassword()==null && utili.getPassword()=="") {
